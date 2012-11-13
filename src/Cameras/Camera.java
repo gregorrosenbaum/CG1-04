@@ -4,46 +4,45 @@ import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 
-
 /**
  * 
  * @author gregorrosenbaum
- *
+ * 
  */
 
 public abstract class Camera {
 	/**
 	 * 
 	 */
-	final Point3 e;
+	public Point3 e;
 	/**
 	 * 
 	 */
-	final Vector3 g;
+	public Vector3 g;
 	/**
 	 * 
 	 */
-	final Vector3 t;
+	public Vector3 t;
 	/**
 	 * 
 	 */
-	final Vector3 u;
+	public Vector3 u;
 	/**
 	 * 
 	 */
-	final Vector3 v;
+	public Vector3 v;
 	/**
 	 * 
 	 */
-	final Vector3 w;
-	
+	public Vector3 w;
+
 	/**
 	 * 
 	 * @param e
 	 * @param g
 	 * @param t
 	 */
-	public Camera(Point3 e, Vector3 g, Vector3 t){
+	public Camera(final Point3 e, final Vector3 g, final Vector3 t) {
 		this.e = e;
 		this.g = g;
 		this.t = t;
@@ -51,6 +50,7 @@ public abstract class Camera {
 		this.u = t.x(w).mul(1 / t.x(w).magnitude);
 		this.v = w.x(u);
 	}
+
 	/**
 	 * 
 	 * @param w
@@ -59,8 +59,6 @@ public abstract class Camera {
 	 * @param y
 	 * @return
 	 */
-	public Ray rayFor(int w, int h, int x, int y){
-		
-	}
+	public abstract Ray rayFor(int w, int h, int x, int y);
 
 }
