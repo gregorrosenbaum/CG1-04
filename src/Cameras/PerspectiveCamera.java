@@ -1,5 +1,6 @@
 package Cameras;
 
+import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 
@@ -13,7 +14,7 @@ public class PerspectiveCamera extends Camera{
 	/**
 	 * 
 	 */
-	final double angle;
+	public final double angle;
 
 	/**
 	 * 
@@ -23,12 +24,11 @@ public class PerspectiveCamera extends Camera{
 	 * @param angle
 	 */
 	public PerspectiveCamera(Point3 e, Vector3 g, Vector3 t, double angle) {
-		super();
+		super(e,g,t);
 		this.angle = angle;
-		
 	}
 	
-	public Ray Rayfor(int w, int h, int x, int y){
+	public Ray rayFor(int w, int h, int x, int y){
 		
 	}
 	
