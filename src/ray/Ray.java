@@ -20,4 +20,9 @@ public class Ray {
 	public Vector3 tOf(Point3 p) {
 		return p.sub(o);
 	}
+
+	@Override
+	public String toString() {
+		return "o:" + o + ", d: " + d;
+	}
 }
