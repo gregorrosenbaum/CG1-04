@@ -25,7 +25,7 @@ public class PerspectiveCamera extends Camera {
 	 */
 	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
 		super(e, g, t);
-		this.angle = angle;
+		this.angle = Math.toRadians(angle);
 	}
 
 	@Override
