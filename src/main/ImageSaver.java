@@ -16,14 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import Cameras.PerspectiveCamera;
-
 import object.Geometry;
 import object.Plane;
 import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
-
+import Cameras.PerspectiveCamera;
 import color.Color;
 
 /**
@@ -60,8 +58,8 @@ public class ImageSaver {
 		myFrame.setSize(WIDTH, HEIGHT);
 
 		// adds our new canvas to the frame
-		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4);
-		World testWorld = new World(new Color(0,0,0), new Geometry[]{new Plane(new Color(0,1,0), new Point3(0,-1,0), new Normal3(0,1,0))});
+		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4.0);
+		World testWorld = new World(new Color(0, 0, 0), new Geometry[] { new Plane(new Color(0, 1, 0), new Point3(0, 0, -1), new Normal3(0, 0, 1)) });
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
 

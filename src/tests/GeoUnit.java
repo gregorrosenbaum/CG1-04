@@ -11,11 +11,11 @@ import color.Color;
 public class GeoUnit {
 
 	public static void main(String[] args) {
-		PerspectiveCamera cam = new PerspectiveCamera(new Point3(0, 1, 0), new Vector3(0, -1, -1), new Vector3(0, 1, 0), 30);
+		PerspectiveCamera cam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4.0);
 		Ray ray = cam.rayFor(1024, 768, 300, 400);
 		System.out.println("Ray: \n" + ray.d);
 		// Ray ray = new Ray(new Point3(0, 1, 0), new Vector3(-0.33, -0.66, -0.69));
-		Plane plane = new Plane(new Color(0, 1, 0), new Point3(0, 0, 0), new Normal3(0, 1, 0));
+		Plane plane = new Plane(new Color(0, 1, 0), new Point3(0, -1, 0), new Normal3(0, 1, 0));
 		System.out.println("Hit: \n");
 		System.out.println(plane.hit(ray));
 	}

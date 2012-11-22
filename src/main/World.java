@@ -6,7 +6,7 @@ import ray.Ray;
 import color.Color;
 
 public class World {
-	
+
 	public Color backgroundColor;
 	public Geometry[] elements;
 
@@ -14,17 +14,15 @@ public class World {
 		this.backgroundColor = backgroundColor;
 		this.elements = elements;
 	}
-	
-	public Color hit(Ray ray){
-		for(Geometry element : elements){
+
+	public Color hit(Ray ray) {
+		for (Geometry element : elements) {
 			Hit h = element.hit(ray);
-			if(h != null){
-				System.out.println(element.color);
+			if (h != null) {
 				return element.color;
 			}
 		}
 		return backgroundColor;
 	}
-	
 
 }

@@ -6,10 +6,6 @@ import java.awt.image.BufferedImage;
 
 import Cameras.Camera;
 
-import ray.Ray;
-import vectorlib.Point3;
-import vectorlib.Vector3;
-
 public class RayTracer extends Canvas {
 
 	private static final long serialVersionUID = 5555522598959749695L;
@@ -37,12 +33,8 @@ public class RayTracer extends Canvas {
 			for (int y = 0; y < height; y++) {
 				// setzt einen Punkt des Rasters mit den Koordinaten x,x auf die
 				// angegebene Farbe
-				img.getRaster().setDataElements(
-						x,
-						y,
-						img.getColorModel().getDataElements(
-								(world.hit(cam.rayFor(width, height, x, y))
-										.toInt()), null));
+				img.getRaster()
+						.setDataElements(x, y, img.getColorModel().getDataElements((world.hit(cam.rayFor(width, height, x, y)).toInt()), null));
 			}
 		}
 
@@ -55,8 +47,7 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the width of the image. Redraws the {@link ImageCanvas} for the
-	 * changes to show.
+	 * Sets the width of the image. Redraws the {@link ImageCanvas} for the changes to show.
 	 * 
 	 * @param width
 	 *            the width of the image.
@@ -72,8 +63,7 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the height of the image. Redraws the {@link ImageCanvas} for the
-	 * changes to show.
+	 * Sets the height of the image. Redraws the {@link ImageCanvas} for the changes to show.
 	 * 
 	 * @param height
 	 *            the height of the image.

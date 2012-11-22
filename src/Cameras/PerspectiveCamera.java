@@ -31,8 +31,8 @@ public class PerspectiveCamera extends Camera {
 	@Override
 	public Ray rayFor(int w, int h, int x, int y) {
 		Point3 o = this.e;
-		Vector3 r = this.w.mul(-1).mul((h / 2) / Math.tan(angle)).add(u.mul(x - ((w - 1) / 2))).add(v.mul(y - ((h - 1) / 2)));
-		Vector3 d = r.mul(1 / r.magnitude);
+		Vector3 r = this.w.mul(-1).mul((h / 2.0) / Math.tan(angle)).add(u.mul(x - ((w - 1) / 2.0))).add(v.mul(y - ((h - 1) / 2.0)));
+		Vector3 d = r.mul(1.0 / r.magnitude);
 		return new Ray(o, d);
 	}
 }
