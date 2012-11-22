@@ -17,7 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import object.Geometry;
-import object.Triangle;
+import object.Sphere;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Cameras.PerspectiveCamera;
@@ -57,11 +57,14 @@ public class ImageSaver {
 		myFrame.setSize(WIDTH, HEIGHT);
 
 		// adds our new canvas to the frame
-		Geometry[] objects = new Geometry[] { new Triangle(new Color(1, 0, 1), new Point3(-0.5, 0.5, -3), new Point3(0.5, 0.5, -3), new Point3(0.5,
-				-0.5, -3)) };
+		Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(0, 0, -3), 0.5) };
+
+		// Geometry[] objects = new Geometry[] { new Triangle(new Color(1, 0, 1), new Point3(-0.5,
+		// 0.5, -3), new Point3(0.5, 0.5, -3), new Point3(0.5,
+		// -0.5, -3))
 		// Geometry[] objects = new Geometry[] { new Plane(new Color(0, 1, 0), new Point3(0, 0, -1),
 		// new Normal3(0, 0, 1)) };
-		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, -1, 0), new Vector3(0, 1, 0), Math.PI / 4.0);
+		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, -3, 0), new Vector3(0, 1, 0), Math.PI / 4.0);
 		World testWorld = new World(new Color(0, 0, 0), objects);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
