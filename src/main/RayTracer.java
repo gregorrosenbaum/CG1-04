@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import Cameras.Camera;
+
 import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
@@ -17,11 +19,13 @@ public class RayTracer extends Canvas {
 	protected int width;
 	protected int height;
 	protected World world;
+	protected Camera cam;
 
-	public RayTracer(int width, int height, World world) {
+	public RayTracer(int width, int height, World world, Camera cam) {
 		this.world = world;
 		this.width = width;
 		this.height = height;
+		this.cam = cam;
 	}
 
 	@Override
@@ -33,14 +37,12 @@ public class RayTracer extends Canvas {
 			for (int y = 0; y < height; y++) {
 				// setzt einen Punkt des Rasters mit den Koordinaten x,x auf die
 				// angegebene Farbe
-				img.getRaster()
-						.setDataElements(
-								x,
-								y,
-								img.getColorModel().getDataElements(
-										(int) (world.hit(new Ray(new Point3(0,
-												1, 0), new Vector3(-0.33,
-												-0.66, -0.69))).b * 13944082), null));
+				img.getRaster().setDataElements(
+						x,
+						y,
+						img.getColorModel().getDataElements(
+								(world.hit(cam.rayFor(width, height, x, y))
+										.toInt()), null));
 			}
 		}
 

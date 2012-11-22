@@ -27,5 +27,9 @@ public class Color {
 	public Color mul(double d) {
 		return new Color(r * d, g * d, b * d);
 	}
+	
+	public int toInt(){
+		return ((int)(r * 255) << 16) + ((int)(g * 255) << 8) + (int)(b * 255);
+	}
 
 }

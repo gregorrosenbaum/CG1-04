@@ -46,8 +46,12 @@ public abstract class Camera {
 		this.e = e;
 		this.g = g;
 		this.t = t;
-		this.w = g.mul(-1).mul(1 / g.magnitude);
-		this.u = t.x(w).mul(1 / t.x(w).magnitude);
+		this.w = g.mul(1 / g.magnitude).mul(-1);
+		if (t.x(w).magnitude == 0) {
+			this.u = new Vector3(0, 0, 0);
+		} else {
+			this.u = t.x(w).mul(1 / t.x(w).magnitude);
+		}
 		this.v = w.x(u);
 	}
 
