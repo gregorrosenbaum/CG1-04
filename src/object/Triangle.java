@@ -28,8 +28,9 @@ public class Triangle extends Geometry {
 		Mat3x3 A3 = A.changeCol3(b);
 		double beta = A1.determinant / A.determinant;
 		double gamma = A2.determinant / A.determinant;
+		double alpha = beta + gamma;
 		double t = A3.determinant / A.determinant;
-		if (t > 0 && beta <= 1 && gamma <= 1) {
+		if (t > 0 && 0 <= beta && 0 <= gamma && beta + gamma <= 1) {
 			return new Hit(t, r, this);
 		}
 		return null;

@@ -2,6 +2,7 @@ package object;
 
 import ray.Ray;
 import vectorlib.Point3;
+import vectorlib.Vector3;
 import color.Color;
 
 public class Sphere extends Geometry {
@@ -17,8 +18,10 @@ public class Sphere extends Geometry {
 
 	@Override
 	public Hit hit(Ray ray) {
+
 		double a = ray.d.dot(ray.d);
-		double b = ray.d.dot(ray.o.sub(c).mul(2));
+		Vector3 test = (ray.o.sub(c));
+		double b = ray.d.dot(test.mul(2));
 		double cn = (ray.o.sub(c).dot(ray.o.sub(c)) - (this.r * this.r));
 		double d = (b * b) - 4.0 * a * cn;
 		double t1 = (-b + Math.sqrt(d)) / (2.0 * a);
