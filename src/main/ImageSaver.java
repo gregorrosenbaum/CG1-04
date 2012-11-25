@@ -16,12 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import object.AxisAlignedBox;
 import object.Geometry;
-import object.Plane;
-import object.Triangle;
-import vectorlib.Normal3;
+import object.Sphere;
 import vectorlib.Point3;
 import vectorlib.Vector3;
+import Cameras.OrthographicCamera;
 import Cameras.PerspectiveCamera;
 import color.Color;
 
@@ -52,23 +52,23 @@ public class ImageSaver {
 
 		// our application window's height and width
 		final int WIDTH = 640;
-		final int HEIGHT = 480;
+		final int HEIGHT = 640;
 
 		// our application window
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 
-		// adds our new canvas to the frame
-		// Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0,
-		// -3), 0.5),
-		// new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0,
+		 -3), 0.5),
+		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+		
+//		 Geometry[] objects = new Geometry[] { new AxisAlignedBox(new Color(0, 0, 1),new Vector3(-0.5,0,-0.5),new Point3(0.5, 1,
+//				 0.5)) };
 
-		Geometry[] objects = new Geometry[] {
-				new Triangle(new Color(1, 0, 1), new Point3(-0.5, 0.5, -3), new Point3(0.5, 0.5, -3), new Point3(0.5, -0.5, -3)),
-				new Plane(new Color(0, 1, 0), new Point3(0, -1, 0), new Normal3(0, 1, 0)) };
-		// Geometry[] objects = new Geometry[] { new Plane(new Color(0, 1, 0), new Point3(0, -1, 0),
-		// new Normal3(0, 1, 0)) };
-		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, -1, 0), Math.PI / 4);
+		OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+//		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(3, 3, 3), new Vector3(-3, -3, -3), new Vector3(0, -1, 0), Math.PI / 4);
+//		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+
 		World testWorld = new World(new Color(0, 0, 0), objects);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
