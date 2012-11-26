@@ -61,7 +61,7 @@ public class ImageSaver { //TODO: Alle Geometrien implementieren. Auskommentierb
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 		
-		//AK 1 Abbildung 5: Ebene FEHLER RICHTIG BEI POSITION 0,1,0 Spieglung an X-Achse
+		//AK 1 Abbildung 5: Ebene FEHLER RICHTIG BEI POSITION new Point3(0, 1, 0) wäre richtig
 		Geometry[] objects = new Geometry[] { new Plane(new Color(0, 1, 0), new Point3(0, -1, 0), new Normal3(0, 1, 0))};
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);	
 		
@@ -75,7 +75,7 @@ public class ImageSaver { //TODO: Alle Geometrien implementieren. Auskommentierb
 //		0.5)) };
 //		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(3, 3, 3), new Vector3(-3, -3, -3), new Vector3(0, 1, 0), Math.PI / 4);
 		
-		// AK 8 Abbildung 8: Dreieck FEHLER SPIEGLUNG X-Achse
+		// AK 8 Abbildung 8: Dreieck FEHLER SPIEGLUNG X-Achse new Point3(-0.5, -0.5, -3) wäre richtig
 //		Geometry[] objects = new Geometry[] { new Triangle(new Color (1, 0, 1), new Point3(-0.5, 0.5, -3), new Point3 (0.5, 0.5, -3), new Point3 (0.5, -0.5, -3))};
 //		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
 		
