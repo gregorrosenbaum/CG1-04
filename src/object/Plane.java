@@ -5,10 +5,36 @@ import vectorlib.Normal3;
 import vectorlib.Point3;
 import color.Color;
 
+/**
+ * Constructs a {@link Geometry} Plane with a {@link Normal3} and a
+ * {@link Point3}.
+ * 
+ * @param color
+ *            = Color of the Plane.
+ * @param a
+ *            = {@link Normal3} to construct the Plane.
+ * @param n
+ *            = {@link Point3} to construct the Plane.
+ * 
+ * @author Johann Hofmann
+ * @author Gregor Rosenbaum
+ * @author Anton Krebs
+ * 
+ */
 public class Plane extends Geometry {
 
 	public Point3 a;
 	public Normal3 n;
+
+	/**
+	 * 
+	 * @param color
+	 *            = Color of the Plane.
+	 * @param a
+	 *            = {@link Normal3} to construct the Plane.
+	 * @param n
+	 *            = {@link Point3} to construct the Plane.
+	 */
 
 	public Plane(Color color, Point3 a, Normal3 n) {
 		super(color);

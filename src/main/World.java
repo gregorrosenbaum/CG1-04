@@ -16,11 +16,13 @@ public class World {
 	}
 
 	public Color hit(Ray ray) {
+		Hit temp = null;
 		for (Geometry element : elements) {
-			Hit h = element.hit(ray); // TODO: FŸr jedes getroffene Element das
-									  // vorderste wiedergeben.
-			
-			if (h != null) {
+			Hit h = element.hit(ray);
+			if (temp == null || temp.t > h.t){
+				temp = h;
+			}			
+			if (temp != null) {
 				return element.color;
 			}
 		}

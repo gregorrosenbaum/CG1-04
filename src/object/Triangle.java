@@ -2,9 +2,26 @@ package object;
 
 import ray.Ray;
 import vectorlib.Mat3x3;
+import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import color.Color;
+
+/**
+ * Constructs a {@link Geometry} Triangle with three {@link Point3}.
+ * 
+ * @param a
+ *            = First {@link Point3} to construct the Triangle.
+ * @param b
+ *            = Second {@link Point3} to construct the Triangle.
+ * @param c
+ *            = Third {@link Point3} to construct the Triangle.
+ * 
+ * @author Johann Hofmann
+ * @author Gregor Rosenbaum
+ * @author Anton Krebs
+ * 
+ */
 
 public class Triangle extends Geometry {
 
@@ -12,6 +29,18 @@ public class Triangle extends Geometry {
 	public Point3 b;
 	public Point3 c;
 
+	/**
+	 * Constructs a {@link Geometry} Triangle with three {@link Point3}.
+	 * 
+	 * @param color
+	 *            = {@link Color} of the Triangle.
+	 * @param a
+	 *            = First {@link Point3} to construct the Triangle.
+	 * @param b
+	 *            = Second {@link Point3} to construct the Triangle.
+	 * @param c
+	 *            = Third {@link Point3} to construct the Triangle.
+	 */
 	public Triangle(Color color, Point3 a, Point3 b, Point3 c) {
 		super(color);
 		this.a = a;
@@ -21,7 +50,8 @@ public class Triangle extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		Mat3x3 A = new Mat3x3(a.x - b.x, a.x - c.x, r.d.x, a.y - b.y, a.y - c.y, r.d.y, a.z - b.z, a.z - c.z, r.d.z);
+		Mat3x3 A = new Mat3x3(a.x - b.x, a.x - c.x, r.d.x, a.y - b.y,
+				a.y - c.y, r.d.y, a.z - b.z, a.z - c.z, r.d.z);
 		Vector3 b = new Vector3(a.x - r.o.x, a.y - r.o.y, a.z - r.o.z);
 		Mat3x3 A1 = A.changeCol1(b);
 		Mat3x3 A2 = A.changeCol2(b);

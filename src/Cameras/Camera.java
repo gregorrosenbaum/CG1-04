@@ -5,9 +5,12 @@ import vectorlib.Point3;
 import vectorlib.Vector3;
 
 /**
+ * Abstract Superclass for all the cameras we are going to create. For exmaple
+ * {@link OrthographicCamera} or {@link PerspectiveCamera}.
  * 
- * @author gregorrosenbaum
- * 
+ * @author Johann Hofmann
+ * @author Gregor Rosenbaum
+ * @author Anton Krebs
  */
 
 public abstract class Camera {
@@ -37,10 +40,11 @@ public abstract class Camera {
 	public Vector3 w;
 
 	/**
+	 * Creates a Camera in 3-dimensional space.
 	 * 
-	 * @param e
-	 * @param g
-	 * @param t
+	 * @param e = 
+	 * @param g = 
+	 * @param t = 
 	 */
 	public Camera(final Point3 e, final Vector3 g, final Vector3 t) {
 		this.e = e;
