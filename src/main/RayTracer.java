@@ -6,18 +6,55 @@ import java.awt.image.BufferedImage;
 
 import Cameras.Camera;
 
+/**
+ * 
+ * A RayTracer
+ * 
+ * @author Johann Hofmann
+ * @author Gregor Rosenbaum
+ * @author Anton Krebs
+ */
+
 public class RayTracer extends Canvas {
 
 	private static final long serialVersionUID = 5555522598959749695L;
 
-	// our variables can be changed therefore are not static
+	/**
+	 * The image that is created.
+	 */
 	protected BufferedImage img;
+	/**
+	 * Width of the image.
+	 */
 	protected int width;
+	/**
+	 * Heigth of the image.
+	 */
 	protected int height;
+	/**
+	 * The world that stores the objects we intersect.
+	 */
 	protected World world;
+	/**
+	 * The camera to cast our rays.
+	 */
 	protected Camera cam;
 
-	public RayTracer(int width, int height, World world, Camera cam) {
+	/**
+	 * 
+	 * Creates a new Raytracer.
+	 * 
+	 * @param width
+	 *            Width of the image.
+	 * @param height
+	 *            Heigth of the image.
+	 * @param world
+	 *            The world that stores the objects we intersect.
+	 * @param cam
+	 *            The camera to cast our rays.
+	 */
+	public RayTracer(final int width, final int height, final World world,
+			final Camera cam) {
 		this.world = world;
 		this.width = width;
 		this.height = height;
@@ -32,9 +69,13 @@ public class RayTracer extends Canvas {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				// setzt einen Punkt des Rasters mit den Koordinaten x,x auf die
-				// angegebene Farbe
-				img.getRaster()
-						.setDataElements(x, y, img.getColorModel().getDataElements((world.hit(cam.rayFor(width, height, x, y)).toInt()), null));
+				// berechnete Farbe
+				img.getRaster().setDataElements(
+						x,
+						y,
+						img.getColorModel().getDataElements(
+								(world.hit(cam.rayFor(width, height, x, y))
+										.toInt()), null));
 			}
 		}
 
@@ -47,7 +88,8 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the width of the image. Redraws the {@link ImageCanvas} for the changes to show.
+	 * Sets the width of the image. Redraws the {@link RayTracer} for the
+	 * changes to show.
 	 * 
 	 * @param width
 	 *            the width of the image.
@@ -63,7 +105,8 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the height of the image. Redraws the {@link ImageCanvas} for the changes to show.
+	 * Sets the height of the image. Redraws the {@link RayTracer} for the
+	 * changes to show.
 	 * 
 	 * @param height
 	 *            the height of the image.
@@ -74,12 +117,18 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Gets the BufferedImage in the {@link ImageCanvas}.
+	 * Gets the BufferedImage in the {@link RayTracer}.
 	 * 
-	 * @return the {@link BufferedImage} in the {@link ImageCanvas}.
+	 * @return the {@link BufferedImage} in the {@link RayTracer}.
 	 */
 	public BufferedImage getImage() {
 		return img;
+	}
+
+	@Override
+	public String toString() {
+		return "RayTracer [img=" + img + ", width=" + width + ", height="
+				+ height + ", world=" + world + ", cam=" + cam + "]";
 	}
 
 }
