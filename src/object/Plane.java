@@ -51,4 +51,40 @@ public class Plane extends Geometry {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Plane [a=" + a + ", n=" + n + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((a == null) ? 0 : a.hashCode());
+		result = prime * result + ((n == null) ? 0 : n.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Plane other = (Plane) obj;
+		if (a == null) {
+			if (other.a != null)
+				return false;
+		} else if (!a.equals(other.a))
+			return false;
+		if (n == null) {
+			if (other.n != null)
+				return false;
+		} else if (!n.equals(other.n))
+			return false;
+		return true;
+	}
+
 }

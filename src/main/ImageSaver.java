@@ -93,18 +93,18 @@ public class ImageSaver {
 		// 0), new Vector3(0, 0, -1), new Vector3(0, -1, 0), Math.PI / 4);
 
 		// AK 9 Abbildung 9: Zwei Kugeln perspektivisch.
-		// Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0),
-		// new Point3(-1, 0, -3), 0.5),
-		// new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
-		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
-		// 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
-
-		// AK 10 Abbildung 10: Zwei Kugeln orthographisch.
 		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0),
 		 new Point3(-1, 0, -3), 0.5),
 		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
-		 OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0,
-		 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+		 PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
+		 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+
+		// AK 10 Abbildung 10: Zwei Kugeln orthographisch.
+//		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0),
+//		 new Point3(-1, 0, -3), 0.5),
+//		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+//		 OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0,
+//		 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
 
 		World testWorld = new World(new Color(0, 0, 0), objects);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld,

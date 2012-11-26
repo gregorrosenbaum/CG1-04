@@ -1,7 +1,6 @@
 package object;
 
 import ray.Ray;
-import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import color.Color;
@@ -62,5 +61,40 @@ public class Sphere extends Geometry {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "Sphere [c=" + c + ", r=" + r + ", color=" + color + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((c == null) ? 0 : c.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(r);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sphere other = (Sphere) obj;
+		if (c == null) {
+			if (other.c != null)
+				return false;
+		} else if (!c.equals(other.c))
+			return false;
+		if (Double.doubleToLongBits(r) != Double.doubleToLongBits(other.r))
+			return false;
+		return true;
 	}
 }
