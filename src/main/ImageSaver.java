@@ -18,7 +18,10 @@ import javax.swing.JOptionPane;
 
 import object.AxisAlignedBox;
 import object.Geometry;
+import object.Plane;
 import object.Sphere;
+import object.Triangle;
+import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Cameras.OrthographicCamera;
@@ -57,18 +60,44 @@ public class ImageSaver { //TODO: Alle Geometrien implementieren. Auskommentierb
 		// our application window
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
+		
+		//AK 1 Abbildung 5: Ebene
+//		Geometry[] objects = new Geometry[] { new Plane(new Color(0, 1, 0), new Point3(0, 0, 0), new Normal3(0, -1, 0))};
+//		OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);		
+		
+		// AK 2 Abbildung 6: Kugel
+//		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(0, 0,
+//				 -3), 0.5)};
+//		 OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+		
+		//AK 3 Abbildung 7: Box
+//		Geometry[] objects = new Geometry[] { new AxisAlignedBox(new Color(0, 0, 1),new Vector3(-0.5, 0, -0.5),new Point3(0.5, 1,
+//		2)) };
+//		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(3, 3, 3), new Vector3(-2, -2, -2), new Vector3(0.5, -3, 0.5), Math.PI / 4);
+		
+		// AK 8 Abbildung 8: Dreieck
+		Geometry[] objects = new Geometry[] { new Triangle(new Color (1, 0, 0), new Point3(0,1,0), new Point3 (1, 1, 1), new Point3 (1, 0, 0))};
+		OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+		
+		//AK 9 Abbildung 9: Zwei Kugeln perspektivisch.
+//		Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0, -3), 0.5),
+//		new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+//		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+		 
+		 
+		//AK 10 Abbildung 10: Zwei Kugeln orthographisch.
 
-		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0,
-		 -3), 0.5),
-		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+//		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0, -3), 0.5),
+//		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+//		 OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
 		 
 		 //Aufgabe 1:
 		 
-		
+		//viereck
 //		 Geometry[] objects = new Geometry[] { new AxisAlignedBox(new Color(0, 0, 1),new Vector3(-0.5,0,-0.5),new Point3(0.5, 1,
 //				 0.5)) };
 
-		OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+//		OrthographicCamera testCam = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
 //		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(3, 3, 3), new Vector3(-3, -3, -3), new Vector3(0, -1, 0), Math.PI / 4);
 //		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
