@@ -17,7 +17,9 @@ public class World {
 
 	public Color hit(Ray ray) {
 		for (Geometry element : elements) {
-			Hit h = element.hit(ray);
+			Hit h = element.hit(ray); // TODO: FŸr jedes getroffene Element das
+									  // vorderste wiedergeben.
+			
 			if (h != null) {
 				return element.color;
 			}

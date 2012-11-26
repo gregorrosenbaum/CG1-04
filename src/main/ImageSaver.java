@@ -34,7 +34,7 @@ import color.Color;
  * @author Anton Krebs
  */
 
-public class ImageSaver {
+public class ImageSaver { //TODO: Alle Geometrien implementieren. Auskommentierbar.
 
 	// uses ImageIO so save the BufferedImage to the path
 	// the suffix is added without any checks if it is already specified in path
@@ -61,6 +61,9 @@ public class ImageSaver {
 		 Geometry[] objects = new Geometry[] { new Sphere(new Color(1, 0, 0), new Point3(-1, 0,
 		 -3), 0.5),
 		 new Sphere(new Color(1, 0, 0), new Point3(1, 0, -6), 0.5) };
+		 
+		 //Aufgabe 1:
+		 
 		
 //		 Geometry[] objects = new Geometry[] { new AxisAlignedBox(new Color(0, 0, 1),new Vector3(-0.5,0,-0.5),new Point3(0.5, 1,
 //				 0.5)) };

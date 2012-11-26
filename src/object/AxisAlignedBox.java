@@ -15,12 +15,15 @@ public class AxisAlignedBox extends Geometry {
 		this.lbf = lbf;
 		this.run = run;
 	}
-
-	@Override
+	
 	public Hit hit(Ray r) {
 		
-		double tx_min, ty_min, tz_min;
-		double tx_max, ty_max, tz_max;
+		double tx_min; 
+		double ty_min; 
+		double tz_min; 
+		double tx_max;
+		double ty_max; 
+		double tz_max;
 		
 		double a = 1.0 / r.d.x;
 		if(a >= 0){
