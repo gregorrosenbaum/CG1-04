@@ -52,7 +52,11 @@ public class World {
 		Hit temp = null;
 		for (Geometry element : elements) {
 			Hit h = element.hit(ray);
-			if (temp == null || temp.t > h.t) {
+			if (temp == null) {
+				temp = h;
+			}
+			if(temp != null && h != null){
+				if(temp.t > h.t)
 				temp = h;
 			}
 		}
