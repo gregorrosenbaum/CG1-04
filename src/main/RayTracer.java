@@ -40,6 +40,8 @@ public class RayTracer extends Canvas {
 	 */
 	protected Camera cam;
 
+	protected Tracer tracer;
+
 	/**
 	 * 
 	 * Creates a new Raytracer.
@@ -53,12 +55,12 @@ public class RayTracer extends Canvas {
 	 * @param cam
 	 *            The camera to cast our rays.
 	 */
-	public RayTracer(final int width, final int height, final World world,
-			final Camera cam) {
+	public RayTracer(final int width, final int height, final World world, final Camera cam) {
 		this.world = world;
 		this.width = width;
 		this.height = height;
 		this.cam = cam;
+		this.tracer = new Tracer(world);
 	}
 
 	@Override
@@ -70,12 +72,8 @@ public class RayTracer extends Canvas {
 			for (int y = 0; y < height; y++) {
 				// setzt einen Punkt des Rasters mit den Koordinaten x,x auf die
 				// berechnete Farbe
-				img.getRaster().setDataElements(
-						x,
-						y,
-						img.getColorModel().getDataElements(
-								(world.hit(cam.rayFor(width, height, x, y))
-										.toInt()), null));
+				img.getRaster().setDataElements(x, height - y - 1,
+						img.getColorModel().getDataElements((tracer.colorFor((cam.rayFor(width, height, x, y))).toInt()), null));
 			}
 		}
 
@@ -88,8 +86,7 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the width of the image. Redraws the {@link RayTracer} for the
-	 * changes to show.
+	 * Sets the width of the image. Redraws the {@link RayTracer} for the changes to show.
 	 * 
 	 * @param width
 	 *            the width of the image.
@@ -105,8 +102,7 @@ public class RayTracer extends Canvas {
 	}
 
 	/**
-	 * Sets the height of the image. Redraws the {@link RayTracer} for the
-	 * changes to show.
+	 * Sets the height of the image. Redraws the {@link RayTracer} for the changes to show.
 	 * 
 	 * @param height
 	 *            the height of the image.
@@ -127,8 +123,7 @@ public class RayTracer extends Canvas {
 
 	@Override
 	public String toString() {
-		return "RayTracer [img=" + img + ", width=" + width + ", height="
-				+ height + ", world=" + world + ", cam=" + cam + "]";
+		return "RayTracer [img=" + img + ", width=" + width + ", height=" + height + ", world=" + world + ", cam=" + cam + "]";
 	}
 
 }

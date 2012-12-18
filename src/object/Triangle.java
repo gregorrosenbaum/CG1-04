@@ -4,6 +4,7 @@ import ray.Ray;
 import vectorlib.Mat3x3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
+import Materials.Material;
 import color.Color;
 
 /**
@@ -31,7 +32,7 @@ public class Triangle extends Geometry {
 	/**
 	 * Constructs a {@link Geometry} Triangle with three {@link Point3}.
 	 * 
-	 * @param color
+	 * @param material
 	 *            = {@link Color} of the Triangle.
 	 * @param a
 	 *            = First {@link Point3} to construct the Triangle.
@@ -40,8 +41,8 @@ public class Triangle extends Geometry {
 	 * @param c
 	 *            = Third {@link Point3} to construct the Triangle.
 	 */
-	public Triangle(Color color, Point3 a, Point3 b, Point3 c) {
-		super(color);
+	public Triangle(Material material, Point3 a, Point3 b, Point3 c) {
+		super(material);
 		this.a = a;
 		this.b = b;
 		this.c = c;
@@ -49,8 +50,7 @@ public class Triangle extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		Mat3x3 A = new Mat3x3(a.x - b.x, a.x - c.x, r.d.x, a.y - b.y,
-				a.y - c.y, r.d.y, a.z - b.z, a.z - c.z, r.d.z);
+		Mat3x3 A = new Mat3x3(a.x - b.x, a.x - c.x, r.d.x, a.y - b.y, a.y - c.y, r.d.y, a.z - b.z, a.z - c.z, r.d.z);
 		Vector3 b = new Vector3(a.x - r.o.x, a.y - r.o.y, a.z - r.o.z);
 		Mat3x3 A1 = A.changeCol1(b);
 		Mat3x3 A2 = A.changeCol2(b);
@@ -66,8 +66,7 @@ public class Triangle extends Geometry {
 
 	@Override
 	public String toString() {
-		return "Triangle [a=" + a + ", b=" + b + ", c=" + c + ", color="
-				+ color + "]";
+		return "Triangle [a=" + a + ", b=" + b + ", c=" + c + ", material=" + material + "]";
 	}
 
 	@Override

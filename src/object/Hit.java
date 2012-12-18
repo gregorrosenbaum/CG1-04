@@ -1,6 +1,8 @@
 package object;
 
 import ray.Ray;
+import vectorlib.Normal3;
+import Cameras.Camera;
 
 /**
  * Tests if the {@link Ray} of the {@link Camera} hits the {@link Geometry}
@@ -10,36 +12,34 @@ import ray.Ray;
  * @author Anton Krebs
  * 
  * @param t
- *            = Distance between the {@link Geometry}-Object and the
- *            {@link Camera}.
+ *            = Distance between the {@link Geometry}-Object and the {@link Camera}.
  * @param ray
  *            = Ray from the {@link Camera} to the {@link Geometry}.
  * @param geo
- *            = {@link Geometry}-Object ({@link Plane}, {@link Sphere},
- *            {@link Triangle}
+ *            = {@link Geometry}-Object ({@link Plane}, {@link Sphere}, {@link Triangle}
  */
 public class Hit {
 
 	public final double t;
 	public final Ray ray;
 	public final Geometry geo;
+	public final Normal3 normal;
 
 	/**
 	 * 
 	 * @param t
-	 *            = Distance between the {@link Geometry}-Object and the
-	 *            {@link Camera}.
+	 *            = Distance between the {@link Geometry}-Object and the {@link Camera}.
 	 * @param ray
 	 *            = Ray from the {@link Camera} to the {@link Geometry}.
 	 * @param geo
-	 *            = {@link Geometry}-Object ({@link Plane}, {@link Sphere},
-	 *            {@link Triangle}
+	 *            = {@link Geometry}-Object ({@link Plane}, {@link Sphere}, {@link Triangle}
 	 */
 
-	public Hit(final double t, final Ray ray, final Geometry geo) {
+	public Hit(final double t, final Ray ray, final Geometry geo, Normal3 normal) {
 		this.t = t;
 		this.ray = ray;
 		this.geo = geo;
+		this.normal = normal;
 	}
 
 	@Override

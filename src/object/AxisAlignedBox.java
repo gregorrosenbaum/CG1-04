@@ -1,9 +1,9 @@
 package object;
 
 import ray.Ray;
+import vectorlib.Normal3;
 import vectorlib.Point3;
-import vectorlib.Vector3;
-import color.Color;
+import Materials.Material;
 
 /**
  * An axis aligned box.
@@ -18,7 +18,7 @@ public class AxisAlignedBox extends Geometry {
 	/**
 	 * Point 1
 	 */
-	public Vector3 lbf;
+	public Point3 lbf;
 	/*
 	 * Point 2
 	 */
@@ -27,16 +27,16 @@ public class AxisAlignedBox extends Geometry {
 	/**
 	 * Creates a new axis aligned box.
 	 * 
-	 * @param color
+	 * @param material
 	 *            the color.
-	 * @param lbf
+	 * @param point3
 	 *            Point 1.
 	 * @param run
 	 *            Point 2.
 	 */
 
-	public AxisAlignedBox(Color color, Vector3 lbf, Point3 run) {
-		super(color);
+	public AxisAlignedBox(Material material, Point3 lbf, Point3 run) {
+		super(material);
 		this.lbf = lbf;
 		this.run = run;
 	}
@@ -80,49 +80,65 @@ public class AxisAlignedBox extends Geometry {
 
 		double t0, t1;
 
-		// int face_in, face_out;
+		int face_in, face_out;
 
 		if (tx_min > ty_min) {
 			t0 = tx_min;
-			// face_in = (a >= 0.0) ? 0 : 3;
+			face_in = (a >= 0.0) ? 0 : 3;
 		} else {
 			t0 = ty_min;
-			// face_in = (b >= 0.0) ? 1 : 4;
+			face_in = (b >= 0.0) ? 1 : 4;
 		}
 
 		if (tz_min > t0) {
 			t0 = tz_min;
-			// face_in = (c >= 0.0) ? 2: 5;
+			face_in = (c >= 0.0) ? 2 : 5;
 		}
 
 		if (tx_max < ty_max) {
 			t1 = tx_max;
-			// face_out = (a >= 0.0) ? 3 : 0;
+			face_out = (a >= 0.0) ? 3 : 0;
 		} else {
 			t1 = ty_max;
-			// face_out= (b >= 0.0) ? 4 : 1;
+			face_out = (b >= 0.0) ? 4 : 1;
 		}
 
 		if (tz_max < t1) {
 			t1 = tz_max;
-			// face_out= (c >= 0.0) ? 5: 2;
+			face_out = (c >= 0.0) ? 5 : 2;
 		}
 
 		if (t0 < t1 && t1 > 0) {
 			if (t0 > 0) {
-				return new Hit(t0, r, this);
+				return new Hit(t0, r, this, getNormal(face_in));
 			} else {
-				return new Hit(t1, r, this);
+				return new Hit(t1, r, this, getNormal(face_out));
 			}
 		}
+		return null;
+	}
 
+	private Normal3 getNormal(int face) {
+		switch (face) {
+			case 0:
+				return new Normal3(-1, 0, 0);
+			case 1:
+				return new Normal3(0, -1, 0);
+			case 2:
+				return new Normal3(0, 0, -1);
+			case 3:
+				return new Normal3(1, 0, 0);
+			case 4:
+				return new Normal3(0, 1, 0);
+			case 5:
+				return new Normal3(0, 0, 1);
+		}
 		return null;
 	}
 
 	@Override
 	public String toString() {
-		return "AxisAlignedBox [lbf=" + lbf + ", run=" + run + ", color="
-				+ color + "]";
+		return "AxisAlignedBox [lbf=" + lbf + ", run=" + run + ", color=" + material + "]";
 	}
 
 	@Override

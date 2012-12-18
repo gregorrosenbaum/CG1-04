@@ -1,9 +1,12 @@
 package Materials;
 
 import main.RayTracer;
+import main.Tracer;
 import main.World;
+import object.Geometry;
 import object.Hit;
 import color.Color;
+
 /**
  * Superclass for all materials we create for the {@link Geometry}.
  * 
@@ -11,20 +14,18 @@ import color.Color;
  * @author Gregor Rosenbaum
  * @author Anton Krebs
  */
-public class Material {
-	
-	public Material(){
-		
-	}
+public abstract class Material {
+
 	/**
 	 * 
 	 * 
-	 * @param hit = checks for a {@link Hit}
-	 * @param world = {@link World} that displays all the {@link Geometry}.
-	 * @param tracer = {@link RayTracer}.
+	 * @param hit
+	 *            = checks for a {@link Hit}
+	 * @param world
+	 *            = {@link World} that displays all the {@link Geometry}.
+	 * @param tracer
+	 *            = {@link RayTracer}.
 	 * @return
 	 */
-	public Color colorFor(Hit hit, World world, RayTracer tracer) {
-		return new Color(0, 0, 0);
-	}
+	public abstract Color colorFor(Hit hit, World world, Tracer tracer);
 }

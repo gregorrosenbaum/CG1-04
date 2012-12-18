@@ -32,8 +32,7 @@ public class PerspectiveCamera extends Camera {
 	 * @param angle
 	 *            opening angle.
 	 */
-	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t,
-			final double angle) {
+	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
 		super(e, g, t);
 		this.angle = angle;
 	}
@@ -43,7 +42,7 @@ public class PerspectiveCamera extends Camera {
 		Point3 o = this.e;
 		Vector3 p1 = this.w.mul(-1);
 		double p2 = h / 2.0;
-		double p3 = Math.tan(angle);
+		double p3 = Math.tan(angle / 2.0);
 		Vector3 part1 = p1.mul((p2) / p3);
 		Vector3 part2 = u.mul(x - ((w - 1) / 2.0));
 		Vector3 part3 = v.mul(y - ((h - 1) / 2.0));
@@ -54,8 +53,7 @@ public class PerspectiveCamera extends Camera {
 
 	@Override
 	public String toString() {
-		return "PerspectiveCamera [angle=" + angle + ", e=" + e + ", g=" + g
-				+ ", t=" + t + ", u=" + u + ", v=" + v + ", w=" + w + "]";
+		return "PerspectiveCamera [angle=" + angle + ", e=" + e + ", g=" + g + ", t=" + t + ", u=" + u + ", v=" + v + ", w=" + w + "]";
 	}
 
 	@Override
@@ -77,8 +75,7 @@ public class PerspectiveCamera extends Camera {
 		if (getClass() != obj.getClass())
 			return false;
 		PerspectiveCamera other = (PerspectiveCamera) obj;
-		if (Double.doubleToLongBits(angle) != Double
-				.doubleToLongBits(other.angle))
+		if (Double.doubleToLongBits(angle) != Double.doubleToLongBits(other.angle))
 			return false;
 		return true;
 	}

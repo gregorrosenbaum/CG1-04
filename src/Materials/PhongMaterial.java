@@ -1,9 +1,10 @@
 package Materials;
 
-import main.RayTracer;
+import main.Tracer;
 import main.World;
 import object.Hit;
 import color.Color;
+
 /**
  * 
  * 
@@ -12,10 +13,11 @@ import color.Color;
  * @author Anton Krebs
  */
 public class PhongMaterial extends Material {
-	
+
 	public Color diffuse;
 	public Color specular;
 	public int exponent;
+
 	/**
 	 * 
 	 * 
@@ -29,11 +31,10 @@ public class PhongMaterial extends Material {
 		this.specular = specular;
 		this.exponent = exponent;
 	}
+
 	@Override
-	public Color colorFor(Hit hit, World world, RayTracer tracer) {
-		// TODO Auto-generated method stub
-		return super.colorFor(hit, world, tracer);
-	} 
-	
+	public Color colorFor(Hit hit, World world, Tracer tracer) {
+		return null;
+	}
 
 }

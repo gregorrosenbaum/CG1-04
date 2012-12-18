@@ -3,6 +3,7 @@ package main;
 import object.Geometry;
 import object.Hit;
 import ray.Ray;
+import Lightning.Light;
 import color.Color;
 
 /**
@@ -26,6 +27,10 @@ public class World {
 	 */
 	public Geometry[] elements;
 
+	public Light[] lights;
+
+	public Color ambient;
+
 	/**
 	 * 
 	 * Creates a new world.
@@ -35,35 +40,38 @@ public class World {
 	 * @param elements
 	 *            An Array of elements to be placed in our world.
 	 */
-	public World(final Color backgroundColor, final Geometry[] elements) {
+	public World(final Color backgroundColor, final Geometry[] elements, final Light[] lights, final Color ambient) {
 		this.backgroundColor = backgroundColor;
 		this.elements = elements;
+		this.lights = lights;
+		this.ambient = ambient;
 	}
 
 	/**
 	 * 
 	 * Checks all elements for intersection.
 	 * 
-	 * @param ray the ray to check with.
+	 * @param ray
+	 *            the ray to check with.
 	 * @return the color of the intersected object or the background of the world.
 	 */
-	
-	public Color hit(final Ray ray) {
+
+	public Hit hit(final Ray ray) {
 		Hit temp = null;
 		for (Geometry element : elements) {
 			Hit h = element.hit(ray);
 			if (temp == null) {
 				temp = h;
 			}
-			if(temp != null && h != null){
-				if(temp.t > h.t)
-				temp = h;
+			if (temp != null && h != null) {
+				if (temp.t > h.t)
+					temp = h;
 			}
 		}
 		if (temp != null) {
-			return temp.geo.color;
+			return temp;
 		}
-		return backgroundColor;
+		return null;
 	}
 
 }

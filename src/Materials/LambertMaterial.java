@@ -1,9 +1,11 @@
 package Materials;
 
-import main.RayTracer;
+import main.Tracer;
 import main.World;
 import object.Hit;
+import Lightning.Light;
 import color.Color;
+
 /**
  * 
  * 
@@ -26,9 +28,13 @@ public class LambertMaterial extends Material {
 	}
 
 	@Override
-	public Color colorFor(Hit hit, World world, RayTracer tracer) {
-		// TODO Auto-generated method stub
-		return super.colorFor(hit, world, tracer);
+	public Color colorFor(Hit hit, World world, Tracer tracer) {
+
+		Color returnColor = new Color(0, 0, 0);
+
+		for (Light l : world.lights) {
+			returnColor = returnColor.add(color.mul(l.color.mul(Math.max(l.directionFrom(hit.ray.at(hit.t)).dot(hit.normal), 0))));
+		}
+		return returnColor;
 	}
-	
 }

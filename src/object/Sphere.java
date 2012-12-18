@@ -2,12 +2,11 @@ package object;
 
 import ray.Ray;
 import vectorlib.Point3;
-import vectorlib.Vector3;
+import Materials.Material;
 import color.Color;
 
 /**
- * Constructs a {@link Geometry} Sphere with a radius, a {@link Point3} and a
- * {@link Color}.
+ * Constructs a {@link Geometry} Sphere with a radius, a {@link Point3} and a {@link Color}.
  * 
  * @param color
  *            = Color of the Sphere.
@@ -26,18 +25,17 @@ public class Sphere extends Geometry {
 	public double r;
 
 	/**
-	 * Constructs a {@link Geometry} Sphere with a radius, a {@link Point3} and
-	 * a {@link Color}.
+	 * Constructs a {@link Geometry} Sphere with a radius, a {@link Point3} and a {@link Color}.
 	 * 
-	 * @param color
+	 * @param material
 	 *            = Color of the Sphere.
 	 * @param c
 	 *            = {@link Point3} of the Sphere.
 	 * @param r
 	 *            = Radius of the Sphere.
 	 */
-	public Sphere(Color color, Point3 c, double r) {
-		super(color);
+	public Sphere(Material material, Point3 c, double r) {
+		super(material);
 		this.c = c;
 		this.r = r;
 	}
@@ -46,8 +44,7 @@ public class Sphere extends Geometry {
 	public Hit hit(Ray ray) {
 
 		double a = ray.d.dot(ray.d);
-		Vector3 test = (ray.o.sub(c));
-		double b = ray.d.dot(test.mul(2));
+		double b = ray.d.dot((ray.o.sub(c)).mul(2));
 		double cn = (ray.o.sub(c).dot(ray.o.sub(c)) - (this.r * this.r));
 		double d = (b * b) - 4.0 * a * cn;
 		double t1 = (-b + Math.sqrt(d)) / (2.0 * a);
@@ -55,9 +52,9 @@ public class Sphere extends Geometry {
 
 		if (d > 0) {
 			if (t1 > t2) {
-				return new Hit(t2, ray, this);
+				return new Hit(t2, ray, this, (ray.o.sub(c).add(ray.d.mul(t2)).asNormal()));
 			} else {
-				return new Hit(t1, ray, this);
+				return new Hit(t1, ray, this, (ray.o.sub(c).add(ray.d.mul(t1)).asNormal()));
 			}
 		}
 		return null;
@@ -65,7 +62,7 @@ public class Sphere extends Geometry {
 
 	@Override
 	public String toString() {
-		return "Sphere [c=" + c + ", r=" + r + ", color=" + color + "]";
+		return "Sphere [c=" + c + ", r=" + r + ", material=" + material + "]";
 	}
 
 	@Override

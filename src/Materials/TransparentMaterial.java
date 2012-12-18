@@ -1,6 +1,6 @@
 package Materials;
 
-import main.RayTracer;
+import main.Tracer;
 import main.World;
 import object.Hit;
 import color.Color;
@@ -27,11 +27,8 @@ public class TransparentMaterial extends Material {
 	}
 
 	@Override
-	public Color colorFor(Hit hit, World world, RayTracer tracer) {
-		// TODO Auto-generated method stub
-		return super.colorFor(hit, world, tracer);
+	public Color colorFor(Hit hit, World world, Tracer tracer) {
+		return null;
 	}
-	
-	
 
 }

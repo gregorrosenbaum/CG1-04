@@ -1,9 +1,11 @@
 package Lightning;
 
+import main.RayTracer;
 import main.World;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import color.Color;
+
 /**
  * PointLight for the {@link RayTracer}
  * 
@@ -12,14 +14,18 @@ import color.Color;
  * @author Anton Krebs
  */
 public class PointLight extends Light {
-	
+
 	public Point3 position;
-/**
- * 
- * @param color = {@link Color} of the hitted pixel. 
- * @param castsShadows = 
- * @param position = Position of the light.
- */
+
+	/**
+	 * 
+	 * @param color
+	 *            = {@link Color} of the hitted pixel.
+	 * @param castsShadows
+	 *            =
+	 * @param position
+	 *            = Position of the light.
+	 */
 	public PointLight(Color color, boolean castsShadows, Point3 position) {
 		super(color, castsShadows);
 		this.position = position;
@@ -27,13 +33,11 @@ public class PointLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
-		// TODO Auto-generated method stub
-		return super.illuminates(point, world);
+		return true;
 	}
 
 	@Override
 	public Vector3 directionFrom(Point3 point) {
-		// TODO Auto-generated method stub
-		return super.directionFrom(point);
-	}	
+		return position.sub(point).normalized();
+	}
 }

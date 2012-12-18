@@ -3,11 +3,10 @@ package object;
 import ray.Ray;
 import vectorlib.Normal3;
 import vectorlib.Point3;
-import color.Color;
+import Materials.Material;
 
 /**
- * Constructs a {@link Geometry} Plane with a {@link Normal3} and a
- * {@link Point3}.
+ * Constructs a {@link Geometry} Plane with a {@link Normal3} and a {@link Point3}.
  * 
  * @param color
  *            = Color of the Plane.
@@ -28,7 +27,7 @@ public class Plane extends Geometry {
 
 	/**
 	 * 
-	 * @param color
+	 * @param material
 	 *            = Color of the Plane.
 	 * @param a
 	 *            = {@link Normal3} to construct the Plane.
@@ -36,8 +35,8 @@ public class Plane extends Geometry {
 	 *            = {@link Point3} to construct the Plane.
 	 */
 
-	public Plane(Color color, Point3 a, Normal3 n) {
-		super(color);
+	public Plane(Material material, Point3 a, Normal3 n) {
+		super(material);
 		this.a = a;
 		this.n = n;
 	}
@@ -46,7 +45,7 @@ public class Plane extends Geometry {
 	public Hit hit(Ray r) {
 		double t = a.sub(r.o).dot(n) / r.d.dot(n);
 		if (t > 0) {
-			return new Hit(t, r, this);
+			return new Hit(t, r, this, n);
 		}
 		return null;
 	}
