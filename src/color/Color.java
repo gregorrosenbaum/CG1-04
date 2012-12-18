@@ -93,8 +93,7 @@ public class Color {
 	 * @return an int representing the hex-value of the color
 	 */
 	public int toInt() {
-		return ((int) (r * 255) << 16) + ((int) (g * 255) << 8)
-				+ (int) (b * 255);
+		return ((int) (Math.min(r, 1) * 255) << 16) + ((int) (Math.min(g, 1) * 255) << 8) + (int) (Math.min(b, 1) * 255);
 	}
 
 	@Override

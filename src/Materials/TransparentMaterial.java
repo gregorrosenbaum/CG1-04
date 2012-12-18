@@ -22,7 +22,6 @@ public class TransparentMaterial extends Material {
 	 * @param indexOfRefraction
 	 */
 	public TransparentMaterial(double indexOfRefraction) {
-		super();
 		this.indexOfRefraction = indexOfRefraction;
 	}
 

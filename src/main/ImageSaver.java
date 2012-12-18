@@ -27,6 +27,7 @@ import Cameras.PerspectiveCamera;
 import Lightning.Light;
 import Lightning.PointLight;
 import Materials.LambertMaterial;
+import Materials.PhongMaterial;
 import color.Color;
 
 /**
@@ -63,7 +64,7 @@ public class ImageSaver {
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 
-		Geometry[] objects = new Geometry[] { new Sphere(new LambertMaterial(new Color(0, 0, 1)), new Point3(-1, 0, -5), 1),
+		Geometry[] objects = new Geometry[] { new Sphere(new PhongMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 8), new Point3(-1, 0, -5), 1),
 				new Plane(new LambertMaterial(new Color(0, 1, 0)), new Point3(0, -1, 0), new Normal3(0, 1, 0)),
 				new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new Point3(1, 0, -1.5), new Point3(2, 1, -0.5)) };
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0, 3), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
