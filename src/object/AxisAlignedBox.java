@@ -1,6 +1,7 @@
 package object;
 
 import ray.Ray;
+import util.Eps;
 import vectorlib.Normal3;
 import vectorlib.Point3;
 import Materials.Material;
@@ -52,7 +53,7 @@ public class AxisAlignedBox extends Geometry {
 		double tz_max;
 
 		double a = 1.0 / r.d.x;
-		if (a >= 0) {
+		if (a >= Eps.ylon) {
 			tx_min = (lbf.x - r.o.x) * a;
 			tx_max = (run.x - r.o.x) * a;
 		} else {
@@ -61,7 +62,7 @@ public class AxisAlignedBox extends Geometry {
 		}
 
 		double b = 1.0 / r.d.y;
-		if (b >= 0) {
+		if (b >= Eps.ylon) {
 			ty_min = (lbf.y - r.o.y) * b;
 			ty_max = (run.y - r.o.y) * b;
 		} else {
@@ -70,7 +71,7 @@ public class AxisAlignedBox extends Geometry {
 		}
 
 		double c = 1.0 / r.d.z;
-		if (c >= 0) {
+		if (c >= Eps.ylon) {
 			tz_min = (lbf.z - r.o.z) * c;
 			tz_max = (run.z - r.o.z) * c;
 		} else {
@@ -108,8 +109,8 @@ public class AxisAlignedBox extends Geometry {
 			face_out = (c >= 0.0) ? 5 : 2;
 		}
 
-		if (t0 < t1 && t1 > 0) {
-			if (t0 > 0) {
+		if (t0 < t1 && t1 > Eps.ylon) {
+			if (t0 > Eps.ylon) {
 				return new Hit(t0, r, this, getNormal(face_in));
 			} else {
 				return new Hit(t1, r, this, getNormal(face_out));

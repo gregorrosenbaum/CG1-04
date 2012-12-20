@@ -2,6 +2,8 @@ package Lightning;
 
 import main.RayTracer;
 import main.World;
+import object.Hit;
+import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import color.Color;
@@ -28,11 +30,13 @@ public class Spotlight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
+		Hit hit = world.hit(new Ray(point, direction));
+
 		return true;
 	}
 
 	@Override
 	public Vector3 directionFrom(Point3 point) {
-		return null;
+		return position.sub(point).normalized();
 	}
 }

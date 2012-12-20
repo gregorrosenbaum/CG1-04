@@ -3,6 +3,7 @@ package Materials;
 import main.Tracer;
 import main.World;
 import object.Hit;
+import Lightning.Light;
 import color.Color;
 
 /**
@@ -26,7 +27,12 @@ public class SingleColorMaterial extends Material {
 
 	@Override
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
-		return color;
+		for (Light l : world.lights) {
+			if (l.illuminates(hit.ray.at(hit.t), world)) {
+				return color;
+			}
+		}
+		return world.backgroundColor;
 	}
 
 }

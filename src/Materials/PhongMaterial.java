@@ -37,9 +37,11 @@ public class PhongMaterial extends Material {
 		Color returnColor = new Color(0, 0, 0);
 
 		for (Light l : world.lights) {
-			Color spec = specular.mul(l.color.mul(Math.pow(
-					Math.max(hit.ray.d.dot(l.directionFrom(hit.ray.at(hit.t)).reflectedOn(hit.normal).mul(-1.0)), 0), exponent)));
-			returnColor = returnColor.add(diffuse.mul(l.color.mul(Math.max(l.directionFrom(hit.ray.at(hit.t)).dot(hit.normal), 0))).add(spec));
+			if (l.illuminates(hit.ray.at(hit.t), world)) {
+				Color spec = specular.mul(l.color.mul(Math.pow(
+						Math.max(hit.ray.d.dot(l.directionFrom(hit.ray.at(hit.t)).reflectedOn(hit.normal).mul(-1.0)), 0), exponent)));
+				returnColor = returnColor.add(diffuse.mul(l.color.mul(Math.max(l.directionFrom(hit.ray.at(hit.t)).dot(hit.normal), 0))).add(spec));
+			}
 		}
 		return returnColor;
 	}

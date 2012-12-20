@@ -2,6 +2,7 @@ package ray;
 
 import vectorlib.Point3;
 import vectorlib.Vector3;
+import Cameras.Camera;
 
 /**
  * Constructs a Ray with a {@link Point3} and a {@link Vector3}.
@@ -38,13 +39,16 @@ public class Ray {
 	public Point3 at(double t) {
 		return o.add(d.mul(t));
 	}
+
 	/**
 	 * Returns the {@link Vector3} at the {@link Point3} p.
-	 * @param p = 
+	 * 
+	 * @param p
+	 *            =
 	 * @return {@link Vector3}
 	 */
-	public Vector3 tOf(Point3 p) {
-		return p.sub(o);
+	public double tOf(Point3 p) {
+		return o.sub(p).magnitude;
 	}
 
 	@Override

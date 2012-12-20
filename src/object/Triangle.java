@@ -1,7 +1,9 @@
 package object;
 
 import ray.Ray;
+import util.Eps;
 import vectorlib.Mat3x3;
+import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Materials.Material;
@@ -58,8 +60,8 @@ public class Triangle extends Geometry {
 		double beta = A1.determinant / A.determinant;
 		double gamma = A2.determinant / A.determinant;
 		double t = A3.determinant / A.determinant;
-		if (t > 0 && 0 <= beta && 0 <= gamma && beta + gamma <= 1) {
-			return new Hit(t, r, this);
+		if (t > Eps.ylon && Eps.ylon <= beta && Eps.ylon <= gamma && beta + gamma <= 1) {
+			return new Hit(t, r, this, new Normal3(0, 1, 0));
 		}
 		return null;
 	}

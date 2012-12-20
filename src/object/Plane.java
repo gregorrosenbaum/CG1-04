@@ -1,6 +1,7 @@
 package object;
 
 import ray.Ray;
+import util.Eps;
 import vectorlib.Normal3;
 import vectorlib.Point3;
 import Materials.Material;
@@ -44,7 +45,7 @@ public class Plane extends Geometry {
 	@Override
 	public Hit hit(Ray r) {
 		double t = a.sub(r.o).dot(n) / r.d.dot(n);
-		if (t > 0) {
+		if (t > Eps.ylon) {
 			return new Hit(t, r, this, n);
 		}
 		return null;

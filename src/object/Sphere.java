@@ -1,6 +1,7 @@
 package object;
 
 import ray.Ray;
+import util.Eps;
 import vectorlib.Point3;
 import Materials.Material;
 import color.Color;
@@ -50,7 +51,7 @@ public class Sphere extends Geometry {
 		double t1 = (-b + Math.sqrt(d)) / (2.0 * a);
 		double t2 = (-b - Math.sqrt(d)) / (2.0 * a);
 
-		if (d > 0) {
+		if (d > Eps.ylon) {
 			if (t1 > t2) {
 				return new Hit(t2, ray, this, (ray.o.sub(c).add(ray.d.mul(t2)).asNormal()));
 			} else {
