@@ -30,7 +30,7 @@ public class LambertMaterial extends Material {
 	@Override
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 
-		Color returnColor = new Color(0, 0, 0);
+		Color returnColor = new Color(world.ambient.r, world.ambient.g, world.ambient.b);
 
 		for (Light l : world.lights) {
 			if (l.illuminates(hit.ray.at(hit.t), world)) {

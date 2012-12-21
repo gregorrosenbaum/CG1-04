@@ -35,12 +35,15 @@ public class PointLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
-		Ray ray = new Ray(position, point.sub(position).normalized());
-		Hit hit = world.hit(ray);
-		if (hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000) {
-			return true;
+		if (castsShadows == true) {
+			Ray ray = new Ray(position, point.sub(position).normalized());
+			Hit hit = world.hit(ray);
+			if (hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000) {
+				return true;
+			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
