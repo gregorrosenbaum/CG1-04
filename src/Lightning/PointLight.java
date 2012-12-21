@@ -37,7 +37,7 @@ public class PointLight extends Light {
 	public boolean illuminates(Point3 point, World world) {
 		Ray ray = new Ray(position, point.sub(position).normalized());
 		Hit hit = world.hit(ray);
-		if (hit == null || hit.t >= ray.tOf(point)) {
+		if (hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000) {
 			return true;
 		}
 		return false;
