@@ -29,6 +29,7 @@ import Lightning.PointLight;
 import Lightning.Spotlight;
 import Materials.LambertMaterial;
 import Materials.PhongMaterial;
+import Materials.ReflectiveMaterial;
 import color.Color;
 
 /**
@@ -68,8 +69,10 @@ public class ImageSaver {
 		Light[] lights = new Light[] { new Spotlight(new Color(1, 1, 1), new Point3(0, 5, 0), true, new Vector3(0, -1, 0), 30),
 				new PointLight(new Color(1, 1, 1), true, new Point3(0, 0, 0)) };
 
-		Geometry[] objects = new Geometry[] { new Sphere(new PhongMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10), new Point3(-3, 0, -5), 1),
-				new Plane(new LambertMaterial(new Color(0, 1, 0)), new Point3(0, -1, 0), new Normal3(0, 1, 0)),
+		Geometry[] objects = new Geometry[] {
+				new Sphere(new PhongMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10), new Point3(-3, 0, -5), 1),
+				new Plane(new ReflectiveMaterial(new Color(0, 1, 0), new Color(1, 1, 1), 10, new Color(0.5, 0.5, 0.5)), new Point3(0, -1, 0),
+						new Normal3(0, 1, 0)),
 				new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new Point3(1, -1, -1.5), new Point3(2, 0.5, -0.5)) };
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 1, 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
