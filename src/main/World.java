@@ -31,6 +31,8 @@ public class World {
 
 	public Color ambient;
 
+	public double indexOfRefraction;
+
 	/**
 	 * 
 	 * Creates a new world.
@@ -40,11 +42,12 @@ public class World {
 	 * @param elements
 	 *            An Array of elements to be placed in our world.
 	 */
-	public World(final Color backgroundColor, final Geometry[] elements, final Light[] lights, final Color ambient) {
+	public World(final Color backgroundColor, final Geometry[] elements, final Light[] lights, final Color ambient, final double indexOfRefraction) {
 		this.backgroundColor = backgroundColor;
 		this.elements = elements;
 		this.lights = lights;
 		this.ambient = ambient;
+		this.indexOfRefraction = indexOfRefraction;
 	}
 
 	/**

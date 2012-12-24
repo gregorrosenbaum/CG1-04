@@ -2,6 +2,8 @@ package main;
 
 import object.Hit;
 import ray.Ray;
+import Materials.LambertMaterial;
+import Materials.PhongMaterial;
 import color.Color;
 
 public class Tracer {
@@ -12,20 +14,25 @@ public class Tracer {
 
 	public Tracer(World world) {
 		this.world = world;
-		counter = 6;
+		this.counter = 6;
 	}
 
 	public Color colorFor(Ray r) {
-		counter -= 1;
-		if (counter == 0) {
-			counter = 6;
-			return world.backgroundColor;
+		counter--;
+		if (counter > 0) {
+			hit = world.hit(r);
+			if (hit != null) {
+				if (hit.geo.material instanceof LambertMaterial || hit.geo.material instanceof PhongMaterial) {
+					counter = 6;
+				}
+				try {
+					return hit.geo.material.colorFor(hit, world, this);
+				} catch (StackOverflowError e) {
+					System.out.println(counter);
+				}
+			}
 		}
-		hit = world.hit(r);
 		counter = 6;
-		if (hit != null) {
-			return hit.geo.material.colorFor(hit, world, this);
-		}
 		return world.backgroundColor;
 	}
 }

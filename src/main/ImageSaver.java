@@ -16,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import object.AxisAlignedBox;
 import object.Geometry;
 import object.Plane;
 import object.Sphere;
@@ -26,7 +27,8 @@ import Cameras.PerspectiveCamera;
 import Lightning.Light;
 import Lightning.PointLight;
 import Lightning.Spotlight;
-import Materials.ReflectiveMaterial;
+import Materials.LambertMaterial;
+import Materials.TransparentMaterial;
 import color.Color;
 
 /**
@@ -63,41 +65,44 @@ public class ImageSaver {
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 
-		// Light[] lights = new Light[] { new Spotlight(new Color(1, 1, 1), new Point3(0, 3, -5),
-		// true, new Vector3(0, -1, 0), Math.PI / 4) };
+		Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5, 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI / 4),
+				new PointLight(new Color(0.5, 0.5, 0.5), true, new Point3(0, 5, 0)) };
 		//
 		// Geometry[] objects = new Geometry[] { new Plane(new LambertMaterial(new Color(1, 0, 0)),
 		// new Point3(0, -1, 0), new Normal3(0, 1, 0)) };
 
+		Geometry[] objects = new Geometry[] { new Sphere(new TransparentMaterial(1.2), new Point3(-3, 0, -1), 1),
+				new Plane(new LambertMaterial(new Color(0, 0, 1)), new Point3(0, -1, 0), new Normal3(0, 1, 0)),
+				new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new Point3(-5, -1, -8.5), new Point3(3, 0.5, -7.5)) };
+		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 1, 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+
 		// Geometry[] objects = new Geometry[] {
-		// new Sphere(new PhongMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10), new Point3(-3,
-		// 0, -5), 1),
-		// new Plane(new ReflectiveMaterial(new Color(0, 1, 0), new Color(1, 1, 1), 10, new
-		// Color(0.5, 0.5, 0.5)), new Point3(0, -1, 0),
-		// new Normal3(0, 1, 0)),
-		// new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new Point3(1, -1, -1.5), new
-		// Point3(2, 0.5, -0.5)) };
-		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 1, 10), new Vector3(0, 0,
-		// -1), new Vector3(0, 1, 0), Math.PI / 4);
+		// new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1,
+		// 1, 1)), new Point3(0, 0, 0), new Normal3(0,
+		// 1, 0)),
+		// new Sphere(new ReflectiveMaterial(new Color(1, 0, 0), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(0, 0.5, 0), 0.5),
+		// new Sphere(new ReflectiveMaterial(new Color(0, 1, 0), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, 0), 0.5),
+		// new Sphere(new ReflectiveMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(1.5, 0., 0), 0.5),
+		// new Sphere(new ReflectiveMaterial(new Color(0, 1, 1), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(0, 0.5, -1.5), 0.5),
+		// new Sphere(new ReflectiveMaterial(new Color(1, 0, 1), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, -1.5),
+		// 0.5),
+		// new Sphere(new ReflectiveMaterial(new Color(1, 1, 0), new Color(1, 1, 1), 10, new
+		// Color(1, 0.5, 0.5)), new Point3(1.5, 0.5, -1.5),
+		// 0.5) };
+		//
+		// Light[] lights = new Light[] { new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5,
+		// -10), true, new Vector3(0, -1, 0), Math.PI / 8),
+		// new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
+		//
+		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1,
+		// -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
-		Geometry[] objects = new Geometry[] {
-				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0), new Normal3(0,
-						1, 0)),
-				new Sphere(new ReflectiveMaterial(new Color(1, 0, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(0, 0.5, 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 1, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(1.5, 0., 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 1, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(0, 0.5, -1.5), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(1, 0, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, -1.5),
-						0.5),
-				new Sphere(new ReflectiveMaterial(new Color(1, 1, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(1.5, 0.5, -1.5),
-						0.5) };
-
-		Light[] lights = new Light[] { new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5, -10), true, new Vector3(0, -1, 0), Math.PI / 8),
-				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
-
-		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
-
-		World testWorld = new World(new Color(0, 0, 0), objects, lights, new Color(0.1, 0.1, 0.1));
+		World testWorld = new World(new Color(0, 0, 0), objects, lights, new Color(0.1, 0.1, 0.1), 1);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
 

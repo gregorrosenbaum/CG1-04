@@ -48,14 +48,15 @@ public class Sphere extends Geometry {
 		double b = ray.d.dot((ray.o.sub(c)).mul(2));
 		double cn = (ray.o.sub(c).dot(ray.o.sub(c)) - (this.r * this.r));
 		double d = (b * b) - 4.0 * a * cn;
-		double t1 = (-b + Math.sqrt(d)) / (2.0 * a);
-		double t2 = (-b - Math.sqrt(d)) / (2.0 * a);
+		double t = (-b - Math.sqrt(d)) / (2.0 * a);
 
 		if (d > Eps.ylon) {
-			if (t1 > t2) {
-				return new Hit(t2, ray, this, (ray.o.sub(c).add(ray.d.mul(t2)).asNormal()));
-			} else {
-				return new Hit(t1, ray, this, (ray.o.sub(c).add(ray.d.mul(t1)).asNormal()));
+			if (t > Eps.ylon) {
+				return new Hit(t, ray, this, (ray.o.sub(c).add(ray.d.mul(t)).mul(1.0 / r).asNormal()));
+			}
+			t = (-b + Math.sqrt(d)) / (2.0 * a);
+			if (t > Eps.ylon) {
+				return new Hit(t, ray, this, (ray.o.sub(c).add(ray.d.mul(t)).mul(1.0 / r).asNormal()));
 			}
 		}
 		return null;
