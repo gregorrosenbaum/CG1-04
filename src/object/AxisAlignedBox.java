@@ -20,7 +20,7 @@ public class AxisAlignedBox extends Geometry {
 	 * Point 1
 	 */
 	public Point3 lbf;
-	/*
+	/**
 	 * Point 2
 	 */
 	public Point3 run;

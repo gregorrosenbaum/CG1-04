@@ -30,9 +30,20 @@ public class Spotlight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
+		// please look at PointLight first, in order to understand this
+		// the spotlight is limited by its angle, therefore we dont just calculate shadows but also
+		// if a point is within the allowed angle
+		// for everything else see PointLight
 		Ray ray = new Ray(position, point.sub(position).normalized());
 		Hit hit = world.hit(ray);
+
+		// the angle between the vector to the center of the light and the vector to the point:
+		// cos alpha = (dc * dp) / (|dc| * |dp|)
 		double alpha = Math.acos(direction.dot(point.sub(position)) / (direction.magnitude * point.sub(position).magnitude));
+
+		// if alpha is smaller than half the angle of our light cone, our point is illuminated
+		// we then check if any object is in the way, as usual
+		// the castsShadows check is built in here, because the angle calculation is independent
 		if (alpha <= halfAngle
 				&& (castsShadows == false || hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math
 						.round(ray.tOf(point) * 100000) / 100000)) {

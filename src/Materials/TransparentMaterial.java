@@ -18,8 +18,10 @@ import color.Color;
 public class TransparentMaterial extends Material {
 
 	public double indexOfRefraction;
-	protected double counter;
-	protected double maxDepth = 4;
+	// the transparent material needs an own recursion counter because it creates tracer requests
+	// exponentially, which cant be handled by the tracer recursion guard
+	protected int recursionCounter;
+	public static final int maxDepth = 4;
 
 	/**
 	 * 
@@ -28,63 +30,90 @@ public class TransparentMaterial extends Material {
 	 */
 	public TransparentMaterial(double indexOfRefraction) {
 		this.indexOfRefraction = indexOfRefraction;
-		this.counter = maxDepth;
+		this.recursionCounter = maxDepth;
 	}
 
 	@Override
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
-		counter--;
-		if (counter <= 0) {
+		// if the maximum depth is reached, we just return the backgroundcolor
+		// this doesnt make much of a difference, it will be for internal reflection by now anyway
+		recursionCounter--;
+		if (recursionCounter <= 0) {
 			return world.backgroundColor;
 		}
-		double cosg1 = hit.ray.d.mul(-1).dot(hit.normal);
+
+		// we declare a separate normal, because we might need to change it later
 		Normal3 normal = hit.normal;
+
+		// the cosinus of the entry angle of the Incoming ray.
+		double cosI = hit.ray.d.mul(-1).dot(normal);
+
+		// refraction numbers of our materials. might be switched later
 		double n1 = world.indexOfRefraction;
 		double n2 = indexOfRefraction;
-		double test = Math.toDegrees(Math.acos(cosg1));
-		boolean tir = false;
 
-		if (test > 90) {
+		// if the entry angle is greater than 90 degrees, the ray is coming from inside the object
+		// this obviously means we need to change a few things
+		if (Math.toDegrees(Math.acos(cosI)) > 90) {
+			// we reverse the normal, as it should point to the inside now
 			normal = hit.normal.mul(-1);
-			cosg1 = (hit.ray.d.mul(-1).dot(normal));
+			// we recalculate the entry angle
+			cosI = hit.ray.d.mul(-1).dot(normal);
+			// we switch the refraction numbers
 			n1 = indexOfRefraction;
 			n2 = world.indexOfRefraction;
 		}
 
-		double cosg2 = (Math.sqrt(1 - ((n1 / n2) * (n1 / n2)) * (1 - cosg1 * cosg1)));
+		// the cosinus of the angle of the Transmitted ray t, formula see lecture notes
+		// (ATTENTION: lecture notes contain errors regarding this. this is the correct calculation)
+		double cosT = Math.sqrt(1 - ((n1 / n2) * (n1 / n2)) * (1 - cosI * cosI));
 
-		double R0 = Math.pow(((n1 - n2) / (n1 + n2)), 2);
-
-		double R = 1;
+		// TIR = Total Internal Reflection
+		boolean tir = false;
 
 		if (n1 > n2) {
-			double sing2 = (n1 / n2) * (n1 / n2) * (1 - cosg1 * cosg1);
-			// double gc = Math.asin(n2 / n1);
+			double sing2 = (n1 / n2) * (n1 / n2) * (1 - cosI * cosI);
 			if (sing2 > 1) {
 				tir = true;
 			}
 		}
 
+		// necessary for schlicks approximation, formula see lecture notes
+		double R0 = Math.pow(((n1 - n2) / (n1 + n2)), 2);
+
+		// the share of reflection in the resulting color
+		// goes from 0 to 1, with transmission being the rest
+		// the higher R is, the more is reflected and the less is transmitted
+		// if there is Total Internal Reflection, R is 1 (see below)
+		double R = 1;
+
+		// calculation of r, see lecture notes
+		// (ATTENTION: lecture notes contain errors regarding this. this is the correct calculation)
+		// if n1 is greater than n2, we need to use the transmission angle
 		if (n1 <= n2) {
-			R = R0 + (1 - R0) * Math.pow(1 - cosg1, 5);
+			R = R0 + (1 - R0) * Math.pow(1 - cosI, 5);
 		} else if (n1 > n2 && tir == false) {
-			R = R0 + (1 - R0) * Math.pow(1 - cosg2, 5);
+			R = R0 + (1 - R0) * Math.pow(1 - cosT, 5);
 		} else if (n1 > n2 && tir == true) {
+			// if total internal reflection, r = 1
 			R = 1;
 		}
 
+		// if there is total reflection, we can avoid to calculate the transmission
 		if (R != 1) {
-			double T = 1 - R;
+			// transmitted vector t, formula see lecture notes
+			Vector3 t = hit.ray.d.mul(n1 / n2).add(normal.mul(cosI * (n1 / n2) - cosT));
 
-			Vector3 t = hit.ray.d.mul(n1 / n2).add(normal.mul(cosg1 * (n1 / n2) - cosg2));
-
-			Color color = (tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosg1 * 2)))).mul(R)).add(tracer.colorFor(
-					new Ray(hit.ray.at(hit.t), t)).mul(T));
-			counter = maxDepth;
+			// calculate reflection and transmission colors, formula see assignment sheet
+			// see also ReflectiveMaterial
+			Color color = (tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosI * 2)))).mul(R)).add(tracer.colorFor(
+					new Ray(hit.ray.at(hit.t), t)).mul(1 - R));
+			recursionCounter = maxDepth;
 			return color;
 		} else {
-			Color color = tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosg1 * 2))));
-			counter = maxDepth;
+			// only calculate the reflection
+			Color color = tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosI * 2))));
+			recursionCounter = maxDepth;
 			return color;
 		}
 	}

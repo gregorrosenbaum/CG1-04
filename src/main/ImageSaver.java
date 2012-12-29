@@ -66,6 +66,11 @@ public class ImageSaver {
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 
+		// ///////////////////////////// Testing Environment Start //////////////////////////////
+
+		// This is a simple test setup that is fast to render and easy to comprehend
+		// Use it to test work in progress
+
 		// Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5,
 		// 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI /
 		// 4),
@@ -84,6 +89,12 @@ public class ImageSaver {
 		// -4.5), new Point3(-1, 0.5, -3.5))};
 		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
 		// 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+
+		// ///////////////////////////// Testing Environment End //////////////////////////////
+
+		// ///////////////////////////// AK Environment Start //////////////////////////////
+
+		// TODO: Triangle hinzufügen
 
 		Geometry[] objects = new Geometry[] {
 				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0), new Normal3(0,
@@ -105,6 +116,8 @@ public class ImageSaver {
 				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
 
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
+
+		// ///////////////////////////// AK Environment End //////////////////////////////
 
 		World testWorld = new World(new Color(0.1, 0.1, 0.4), objects, lights, new Color(0.1, 0.1, 0.1), 1);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
