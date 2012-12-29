@@ -19,7 +19,7 @@ public class TransparentMaterial extends Material {
 
 	public double indexOfRefraction;
 	protected double counter;
-	protected double maxDepth = 3;
+	protected double maxDepth = 4;
 
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class TransparentMaterial extends Material {
 	@Override
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		counter--;
-		if(counter <= 0){
+		if (counter <= 0) {
 			return world.backgroundColor;
 		}
 		double cosg1 = hit.ray.d.mul(-1).dot(hit.normal);
@@ -51,8 +51,7 @@ public class TransparentMaterial extends Material {
 			n2 = world.indexOfRefraction;
 		}
 
-		double cosg2 = (Math.sqrt(1 - ((n1 / n2) * (n1 / n2))
-				* (1 - cosg1 * cosg1)));
+		double cosg2 = (Math.sqrt(1 - ((n1 / n2) * (n1 / n2)) * (1 - cosg1 * cosg1)));
 
 		double R0 = Math.pow(((n1 - n2) / (n1 + n2)), 2);
 
@@ -76,18 +75,15 @@ public class TransparentMaterial extends Material {
 
 		if (R != 1) {
 			double T = 1 - R;
-			
-			Vector3 t = hit.ray.d.mul(n1 / n2).add(
-					normal.mul(cosg1 * (n1 / n2) - cosg2));
-			
-			Color color =  (tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d
-					.add(normal.mul(cosg1 * 2)))).mul(R)).add(tracer.colorFor(
+
+			Vector3 t = hit.ray.d.mul(n1 / n2).add(normal.mul(cosg1 * (n1 / n2) - cosg2));
+
+			Color color = (tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosg1 * 2)))).mul(R)).add(tracer.colorFor(
 					new Ray(hit.ray.at(hit.t), t)).mul(T));
 			counter = maxDepth;
 			return color;
 		} else {
-			Color color = tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d
-					.add(normal.mul(cosg1 * 2))));
+			Color color = tracer.colorFor(new Ray(hit.ray.at(hit.t), hit.ray.d.add(normal.mul(cosg1 * 2))));
 			counter = maxDepth;
 			return color;
 		}

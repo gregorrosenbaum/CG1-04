@@ -24,6 +24,7 @@ import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Cameras.PerspectiveCamera;
+import Lightning.DirectionalLight;
 import Lightning.Light;
 import Lightning.PointLight;
 import Lightning.Spotlight;
@@ -32,8 +33,8 @@ import Materials.TransparentMaterial;
 import color.Color;
 
 /**
- * A small application that uses {@link ImageCanvas} and {@link ImageIO#write()}
- * to create an image and save it wherever the user decides.
+ * A small application that uses {@link ImageCanvas} and {@link ImageIO#write()} to create an image
+ * and save it wherever the user decides.
  * 
  * @author Johann Hofmann
  * @author Gregor Rosenbaum
@@ -46,14 +47,12 @@ public class ImageSaver {
 	// the suffix is added without any checks if it is already specified in path
 	// you could do some regex but that seemed like a bit overkill for a simple
 	// application
-	public static void saveImageToPng(final BufferedImage img, final String path)
-			throws IOException {
+	public static void saveImageToPng(final BufferedImage img, final String path) throws IOException {
 		ImageIO.write(img, "png", new File(path + ".png"));
 	}
 
 	// same as above, with a file instead of a path
-	public static void saveImageToPng(final BufferedImage img, final File file)
-			throws IOException {
+	public static void saveImageToPng(final BufferedImage img, final File file) throws IOException {
 		saveImageToPng(img, file.getPath());
 	}
 
@@ -67,70 +66,48 @@ public class ImageSaver {
 		final JFrame myFrame = new JFrame("Image Saver");
 		myFrame.setSize(WIDTH, HEIGHT);
 
-//		 Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5,
-//		 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI /
-//		 4),
-//		 new PointLight(new Color(0.5, 0.5, 0.5), true, new Point3(0, 5, 0))
-//		 };
-//
-//		 Geometry[] objects = new Geometry[] { new Sphere(new
-//		 TransparentMaterial(1), new Point3(2, 0, 0), 1),
-//		 new Sphere(new LambertMaterial(new Color(0, 0, 1)), new Point3(2, 0,
-//		 -5), 0.5),
-//		 new Plane(new LambertMaterial(new Color(0, 0, 1)), new Point3(0, -1,
-//		 0), new Normal3(0, 1, 0)),
-//		 new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new
-//		 Point3(-5, -1, -8.5), new Point3(3, 0.5, -7.5)),
-//		 new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-3, -1,
-//		 -4.5), new Point3(-1, 0.5, -3.5))};
-//		 PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
-//		 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+		// Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5,
+		// 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI /
+		// 4),
+		// new PointLight(new Color(0.5, 0.5, 0.5), true, new Point3(0, 5, 0))
+		// };
+		//
+		// Geometry[] objects = new Geometry[] { new Sphere(new
+		// TransparentMaterial(1), new Point3(2, 0, 0), 1),
+		// new Sphere(new LambertMaterial(new Color(0, 0, 1)), new Point3(2, 0,
+		// -5), 0.5),
+		// new Plane(new LambertMaterial(new Color(0, 0, 1)), new Point3(0, -1,
+		// 0), new Normal3(0, 1, 0)),
+		// new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new
+		// Point3(-5, -1, -8.5), new Point3(3, 0.5, -7.5)),
+		// new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-3, -1,
+		// -4.5), new Point3(-1, 0.5, -3.5))};
+		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
+		// 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
 		Geometry[] objects = new Geometry[] {
-				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(
-						1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0),
-						new Normal3(0, 1, 0)),
-				new Sphere(new ReflectiveMaterial(new Color(1, 0, 0),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(0, 0.5, 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 1, 0),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(-1.5, 0.5, 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 0, 1),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(1.5, 0., 0), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(0, 1, 1),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(0, 0.5, -1.5), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(1, 0, 1),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(-1.5, 0.5, -1.5), 0.5),
-				new Sphere(new ReflectiveMaterial(new Color(1, 1, 0),
-						new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)),
-						new Point3(1.5, 0.5, -1.5), 0.5),
-				new Sphere(new TransparentMaterial(1.33), new Point3(0, 2,
-						1.5), 0.5),
-				new Sphere(new TransparentMaterial(1.33), new Point3(-1.5, 2,
-						1.5), 0.5),
-				new Sphere(new TransparentMaterial(1.33), new Point3(1.5, 2,
-						1.5), 0.5),
-				new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(
-						-0.5, 0, 3), new Point3(0.5, 1, 4)) 
-				};
+				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0), new Normal3(0,
+						1, 0)),
+				new Sphere(new ReflectiveMaterial(new Color(1, 0, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(0, 0.5, 0), 0.5),
+				new Sphere(new ReflectiveMaterial(new Color(0, 1, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, 0), 0.5),
+				new Sphere(new ReflectiveMaterial(new Color(0, 0, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(1.5, 0.5, 0), 0.5),
+				new Sphere(new ReflectiveMaterial(new Color(0, 1, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(0, 0.5, -1.5), 0.5),
+				new Sphere(new ReflectiveMaterial(new Color(1, 0, 1), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(-1.5, 0.5, -1.5),
+						0.5),
+				new Sphere(new ReflectiveMaterial(new Color(1, 1, 0), new Color(1, 1, 1), 10, new Color(1, 0.5, 0.5)), new Point3(1.5, 0.5, -1.5),
+						0.5), new Sphere(new TransparentMaterial(1.33), new Point3(0, 2, 1.5), 0.5),
+				new Sphere(new TransparentMaterial(1.33), new Point3(-1.5, 2, 1.5), 0.5),
+				new Sphere(new TransparentMaterial(1.33), new Point3(1.5, 2, 1.5), 0.5),
+				new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-0.5, 0, 3), new Point3(0.5, 1, 4)) };
 
-		Light[] lights = new Light[] {
-				new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5, -10),
-						true, new Vector3(0, -1, 0), Math.PI / 8),
-				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5,
-						-10)) };
+		Light[] lights = new Light[] { new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5, -10), true, new Vector3(0, -1, 0), Math.PI / 8),
+				new DirectionalLight(new Color(0.3, 0.3, 0.3), true, new Vector3(1, -1, 0).normalized()),
+				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
 
-		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8),
-				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
+		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
-		World testWorld = new World(new Color(0, 0, 0), objects, lights,
-				new Color(0.1, 0.1, 0.1), 1);
-		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld,
-				testCam);
+		World testWorld = new World(new Color(0.1, 0.1, 0.4), objects, lights, new Color(0.1, 0.1, 0.1), 1);
+		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
 
 		// we add a Listener to adjust the image when the user resizes the
@@ -203,13 +180,10 @@ public class ImageSaver {
 				// if the filedialog returns that the user clicked "ok"
 				if (fileDialog.showSaveDialog(myFrame) == JFileChooser.APPROVE_OPTION) {
 					try {
-						saveImageToPng(canvas.getImage(),
-								fileDialog.getSelectedFile());
+						saveImageToPng(canvas.getImage(), fileDialog.getSelectedFile());
 					} catch (IOException exception) {
 						// messagebox alerts the user in case of an error
-						JOptionPane
-								.showMessageDialog(myFrame,
-										"Fehler bei Dateiauswahl. Datei nicht gespeichert.");
+						JOptionPane.showMessageDialog(myFrame, "Fehler bei Dateiauswahl. Datei nicht gespeichert.");
 					}
 				}
 

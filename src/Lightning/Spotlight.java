@@ -6,7 +6,6 @@ import object.Hit;
 import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
-import Materials.TransparentMaterial;
 import color.Color;
 
 /**
@@ -35,8 +34,8 @@ public class Spotlight extends Light {
 		Hit hit = world.hit(ray);
 		double alpha = Math.acos(direction.dot(point.sub(position)) / (direction.magnitude * point.sub(position).magnitude));
 		if (alpha <= halfAngle
-				&& (castsShadows == false || hit == null
-						|| (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000 || hit.geo.material instanceof TransparentMaterial)) {
+				&& (castsShadows == false || hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math
+						.round(ray.tOf(point) * 100000) / 100000)) {
 			return true;
 		}
 		return false;

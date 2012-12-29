@@ -6,7 +6,6 @@ import object.Hit;
 import ray.Ray;
 import vectorlib.Point3;
 import vectorlib.Vector3;
-import Materials.TransparentMaterial;
 import color.Color;
 
 /**
@@ -39,8 +38,7 @@ public class PointLight extends Light {
 		if (castsShadows == true) {
 			Ray ray = new Ray(position, point.sub(position).normalized());
 			Hit hit = world.hit(ray);
-			if (hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000
-					|| hit.geo.material instanceof TransparentMaterial) {
+			if (hit == null || (double) Math.round(hit.t * 100000) / 100000 >= (double) Math.round(ray.tOf(point) * 100000) / 100000) {
 				return true;
 			}
 			return false;
