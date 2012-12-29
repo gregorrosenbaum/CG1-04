@@ -24,7 +24,6 @@ import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Cameras.PerspectiveCamera;
-import Lightning.DirectionalLight;
 import Lightning.Light;
 import Lightning.PointLight;
 import Lightning.Spotlight;
@@ -112,7 +111,8 @@ public class ImageSaver {
 				new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-0.5, 0, 3), new Point3(0.5, 1, 4)) };
 
 		Light[] lights = new Light[] { new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5, -10), true, new Vector3(0, -1, 0), Math.PI / 8),
-				new DirectionalLight(new Color(0.3, 0.3, 0.3), true, new Vector3(1, -1, 0).normalized()),
+				// new DirectionalLight(new Color(0.3, 0.3, 0.3), true, new Vector3(1, -1,
+				// 0).normalized()),
 				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
 
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
