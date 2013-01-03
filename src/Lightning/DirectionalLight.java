@@ -36,7 +36,7 @@ public class DirectionalLight extends Light {
 	@Override
 	public boolean illuminates(Point3 point, World world) {
 		if (castsShadows == true) {
-			Ray ray = new Ray(new Point3 (direction.x*50, direction.y*50, direction.z*50), direction.normalized());
+			Ray ray = new Ray(point.sub(direction.normalized().mul(50)), direction.normalized());
 			Hit hit = world.hit(ray);
 			if (hit == null
 					|| (double) Math.round(hit.t * 100000) / 100000 >= (double) Math
