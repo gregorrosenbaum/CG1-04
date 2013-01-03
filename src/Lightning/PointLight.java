@@ -40,7 +40,7 @@ public class PointLight extends Light {
 		// And that is sufficient for shadows.
 		// the actual illumination is calculated by the material with the distance of directionFrom
 		if (castsShadows == true) {
-			// create a new ray that points from the position of the light to the light source
+			// create a new ray that points from the position of the light to the hitted point
 			Ray ray = new Ray(position, point.sub(position).normalized());
 			// try to hit all objects with this ray
 			Hit hit = world.hit(ray);
