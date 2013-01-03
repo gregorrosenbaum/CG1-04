@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.media.jai.widget.ImageCanvas;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -20,13 +21,16 @@ import object.AxisAlignedBox;
 import object.Geometry;
 import object.Plane;
 import object.Sphere;
+import object.Triangle;
 import vectorlib.Normal3;
 import vectorlib.Point3;
 import vectorlib.Vector3;
 import Cameras.PerspectiveCamera;
+import Lightning.DirectionalLight;
 import Lightning.Light;
 import Lightning.PointLight;
 import Lightning.Spotlight;
+import Materials.PhongMaterial;
 import Materials.ReflectiveMaterial;
 import Materials.TransparentMaterial;
 import color.Color;
@@ -70,24 +74,24 @@ public class ImageSaver {
 		// This is a simple test setup that is fast to render and easy to comprehend
 		// Use it to test work in progress
 
-		// Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5,
-		// 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI /
-		// 4),
-		// new PointLight(new Color(0.5, 0.5, 0.5), true, new Point3(0, 5, 0))
-		// };
-		//
-		// Geometry[] objects = new Geometry[] { new Sphere(new
-		// TransparentMaterial(1), new Point3(2, 0, 0), 1),
-		// new Sphere(new LambertMaterial(new Color(0, 0, 1)), new Point3(2, 0,
-		// -5), 0.5),
-		// new Plane(new LambertMaterial(new Color(0, 0, 1)), new Point3(0, -1,
-		// 0), new Normal3(0, 1, 0)),
-		// new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new
-		// Point3(-5, -1, -8.5), new Point3(3, 0.5, -7.5)),
-		// new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-3, -1,
-		// -4.5), new Point3(-1, 0.5, -3.5))};
-		// PerspectiveCamera testCam = new PerspectiveCamera(new Point3(0, 0,
-		// 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4);
+//		 Light[] lights = new Light[] { new Spotlight(new Color(0.5, 0.5,
+//		 0.5), new Point3(-1, 4, -5), true, new Vector3(0, -1, 0), Math.PI /
+//		 4),
+////		 new PointLight(new Color(0.5, 0.5, 0.5), true, new Point3(0, 5, 0)),
+//		 new DirectionalLight(new Color (0.3, 0.3, 0.3), true, new Point3 (1, 1, 1))
+//		 };
+//		
+//		 Geometry[] objects = new Geometry[] { new Sphere(new
+//		 TransparentMaterial(1), new Point3(2, 0, 0), 1),
+//		 new Sphere(new LambertMaterial(new Color(0, 0, 1)), new Point3(2, 0,
+//		 -5), 0.5),
+//		 new Plane(new LambertMaterial(new Color(0, 0, 1)), new Point3(0, -1,
+//		 0), new Normal3(0, 1, 0)),
+//		 new AxisAlignedBox(new LambertMaterial(new Color(1, 0, 0)), new
+//		 Point3(-5, -1, -8.5), new Point3(3, 0.5, -7.5)),
+//		 new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-3, -1,
+//		 -4.5), new Point3(-1, 0.5, -3.5))};
+//			PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
 
 		// ///////////////////////////// Testing Environment End //////////////////////////////
 
@@ -108,11 +112,12 @@ public class ImageSaver {
 						0.5), new Sphere(new TransparentMaterial(1.33), new Point3(0, 2, 1.5), 0.5),
 				new Sphere(new TransparentMaterial(1.33), new Point3(-1.5, 2, 1.5), 0.5),
 				new Sphere(new TransparentMaterial(1.33), new Point3(1.5, 2, 1.5), 0.5),
-				new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-0.5, 0, 3), new Point3(0.5, 1, 4)) };
+				new AxisAlignedBox(new TransparentMaterial(1.33), new Point3(-0.5, 0, 3), new Point3(0.5, 1, 4)),
+				new Triangle (new PhongMaterial(new Color (0,1,0), new Color (0,1,0), 20), new Point3 (0.7 , 0.5, 3), new Point3 (1.3, 0.5, 3), new Point3 (0.7, 0.5, 4)) };
 
 		Light[] lights = new Light[] { new Spotlight(new Color(0.3, 0.3, 0.3), new Point3(0, 5, -10), true, new Vector3(0, -1, 0), Math.PI / 8),
-				// new DirectionalLight(new Color(0.3, 0.3, 0.3), true, new Vector3(1, -1,
-				// 0).normalized()),
+				new DirectionalLight(new Color(0.3, 0.3, 0.3), true, new Vector3(1, -1,
+				0)),
 				new PointLight(new Color(0.3, 0.3, 0.3), true, new Point3(5, 5, -10)) };
 
 		PerspectiveCamera testCam = new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
