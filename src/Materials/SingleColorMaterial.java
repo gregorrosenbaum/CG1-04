@@ -22,11 +22,11 @@ public class SingleColorMaterial extends Material {
 	 * @param color
 	 *            = {@link Color} of the {@link Material}.
 	 */
-	public SingleColorMaterial(Color color) {
+	public SingleColorMaterial(final Color color) {
 		this.color = color;
 	}
 	
-	public Color colorFor(Hit hit, World world, Tracer tracer) {
+	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		for (Light l : world.lights) {
 			if (l.illuminates(hit.ray.at(hit.t), world)) {
 				return color;
