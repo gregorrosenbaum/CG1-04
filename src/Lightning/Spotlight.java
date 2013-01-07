@@ -20,6 +20,15 @@ public class Spotlight extends Light {
 	public Point3 position;
 	public Vector3 direction;
 	public double halfAngle;
+	
+	/**
+	 * 
+	 * @param color = {@link Color} of the hitted pixel.
+	 * @param position = Position of the {@link Light}.
+	 * @param castsShadows = True if the {@link Light} casts any shadow.
+	 * @param direction = Direction of the {@link Light}.
+	 * @param halfAngle = Half the aperture of the Spotlight.
+	 */
 
 	public Spotlight(Color color, Point3 position, boolean castsShadows, Vector3 direction, double halfAngle) {
 		super(color, castsShadows);

@@ -24,7 +24,7 @@ public class PointLight extends Light {
 	 * @param color
 	 *            = {@link Color} of the hitted pixel.
 	 * @param castsShadows
-	 *            =
+	 *            = True if the {@link Light} casts any shadow.
 	 * @param position
 	 *            = Position of the light.
 	 */

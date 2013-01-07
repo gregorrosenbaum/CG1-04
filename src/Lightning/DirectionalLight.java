@@ -24,7 +24,7 @@ public class DirectionalLight extends Light {
 	 * @param color
 	 *            = {@link Color} of the hitted pixel.
 	 * @param castsShadows
-	 *            =
+	 *            = True if the {@link Light} casts any shadow.
 	 * @param direction
 	 *            = Direction of the light.
 	 */
@@ -36,6 +36,9 @@ public class DirectionalLight extends Light {
 	@Override
 	public boolean illuminates(Point3 point, World world) {
 		if (castsShadows == true) {
+			// The directional light has no specific position. So we create one
+			// by setting a position, given by the direction. Then we check for 
+			// shadowcasting and hits.
 			Ray ray = new Ray(point.sub(direction.normalized().mul(50)), direction.normalized());
 			Hit hit = world.hit(ray);
 			if (hit == null
