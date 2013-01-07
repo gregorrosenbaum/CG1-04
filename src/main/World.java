@@ -26,7 +26,9 @@ public class World {
 	 * An Array of elements to be placed in our world.
 	 */
 	public Geometry[] elements;
-
+	/**
+	 * An Array with all the {@Light} set for our world.
+	 */
 	public Light[] lights;
 
 	public Color ambient;

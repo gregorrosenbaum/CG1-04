@@ -27,9 +27,9 @@ import color.Color;
 
 public class Triangle extends Geometry {
 
-	public Point3 a;
-	public Point3 b;
-	public Point3 c;
+	public final Point3 a;
+	public final Point3 b;
+	public final Point3 c;
 
 	/**
 	 * Constructs a {@link Geometry} Triangle with three {@link Point3}.
@@ -43,7 +43,7 @@ public class Triangle extends Geometry {
 	 * @param c
 	 *            = Third {@link Point3} to construct the Triangle.
 	 */
-	public Triangle(Material material, Point3 a, Point3 b, Point3 c) {
+	public Triangle(final Material material, final Point3 a, final Point3 b, final Point3 c) {
 		super(material);
 		this.a = a;
 		this.b = b;
@@ -51,7 +51,7 @@ public class Triangle extends Geometry {
 	}
 
 	@Override
-	public Hit hit(Ray r) {
+	public Hit hit(final Ray r) {
 		Mat3x3 A = new Mat3x3(a.x - b.x, a.x - c.x, r.d.x, a.y - b.y, a.y - c.y, r.d.y, a.z - b.z, a.z - c.z, r.d.z);
 		Vector3 x = new Vector3(a.x - r.o.x, a.y - r.o.y, a.z - r.o.z);
 		Mat3x3 A1 = A.changeCol1(x);

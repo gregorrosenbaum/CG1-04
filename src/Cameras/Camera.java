@@ -17,27 +17,27 @@ public abstract class Camera {
 	/**
 	 * eye position.
 	 */
-	public Point3 e;
+	public final Point3 e;
 	/**
 	 * gaze direction.
 	 */
-	public Vector3 g;
+	public final Vector3 g;
 	/**
 	 * up vector.
 	 */
-	public Vector3 t;
+	public final Vector3 t;
 	/**
 	 * u-axis of the new coordinate system.
 	 */
-	public Vector3 u;
+	public final Vector3 u;
 	/**
 	 * v-axis of the new coordinate system.
 	 */
-	public Vector3 v;
+	public final Vector3 v;
 	/**
 	 * w-axis of the new coordinate system.
 	 */
-	public Vector3 w;
+	public final Vector3 w;
 
 	/**
 	 * Creates a Camera in 3-dimensional space.

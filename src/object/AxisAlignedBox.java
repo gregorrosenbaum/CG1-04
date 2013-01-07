@@ -19,11 +19,11 @@ public class AxisAlignedBox extends Geometry {
 	/**
 	 * Point 1
 	 */
-	public Point3 lbf;
+	public final Point3 lbf;
 	/**
 	 * Point 2
 	 */
-	public Point3 run;
+	public final Point3 run;
 
 	/**
 	 * Creates a new axis aligned box.
@@ -36,14 +36,14 @@ public class AxisAlignedBox extends Geometry {
 	 *            Point 2.
 	 */
 
-	public AxisAlignedBox(Material material, Point3 lbf, Point3 run) {
+	public AxisAlignedBox(final Material material, final Point3 lbf, final Point3 run) {
 		super(material);
 		this.lbf = lbf;
 		this.run = run;
 	}
 
 	@Override
-	public Hit hit(Ray r) {
+	public Hit hit(final Ray r) {
 
 		double tx_min;
 		double ty_min;
@@ -119,7 +119,7 @@ public class AxisAlignedBox extends Geometry {
 		return null;
 	}
 
-	private Normal3 getNormal(int face) {
+	private Normal3 getNormal(final int face) {
 		switch (face) {
 			case 0:
 				return new Normal3(-1, 0, 0);

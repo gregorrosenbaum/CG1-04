@@ -15,7 +15,7 @@ import color.Color;
  */
 public abstract class Geometry {
 
-	public Material material;
+	public final Material material;
 
 	/**
 	 * Abstract Superclass for all the objects we are going to create for the RayTracer. For example

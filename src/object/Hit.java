@@ -35,7 +35,7 @@ public class Hit {
 	 *            = {@link Geometry}-Object ({@link Plane}, {@link Sphere}, {@link Triangle}
 	 */
 
-	public Hit(final double t, final Ray ray, final Geometry geo, Normal3 normal) {
+	public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 normal) {
 		this.t = t;
 		this.ray = ray;
 		this.geo = geo;

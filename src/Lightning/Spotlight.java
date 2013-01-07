@@ -17,9 +17,9 @@ import color.Color;
  */
 public class Spotlight extends Light {
 
-	public Point3 position;
-	public Vector3 direction;
-	public double halfAngle;
+	public final Point3 position;
+	public final Vector3 direction;
+	public final double halfAngle;
 	
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class Spotlight extends Light {
 	 * @param halfAngle = Half the aperture of the Spotlight.
 	 */
 
-	public Spotlight(Color color, Point3 position, boolean castsShadows, Vector3 direction, double halfAngle) {
+	public Spotlight(final Color color, final Point3 position, final boolean castsShadows, final Vector3 direction, double halfAngle) {
 		super(color, castsShadows);
 		this.halfAngle = halfAngle;
 		this.direction = direction;
@@ -38,7 +38,7 @@ public class Spotlight extends Light {
 	}
 
 	@Override
-	public boolean illuminates(Point3 point, World world) {
+	public boolean illuminates(final Point3 point, final World world) {
 		// please look at PointLight first, in order to understand this
 		// the spotlight is limited by its angle, therefore we dont just calculate shadows but also
 		// if a point is within the allowed angle
@@ -62,7 +62,7 @@ public class Spotlight extends Light {
 	}
 
 	@Override
-	public Vector3 directionFrom(Point3 point) {
+	public Vector3 directionFrom(final Point3 point) {
 		return position.sub(point).normalized();
 	}
 }

@@ -23,8 +23,8 @@ import Materials.Material;
  */
 public class Plane extends Geometry {
 
-	public Point3 a;
-	public Normal3 n;
+	public final Point3 a;
+	public final Normal3 n;
 
 	/**
 	 * 
@@ -36,14 +36,14 @@ public class Plane extends Geometry {
 	 *            = {@link Point3} to construct the Plane.
 	 */
 
-	public Plane(Material material, Point3 a, Normal3 n) {
+	public Plane(final Material material, final Point3 a, final Normal3 n) {
 		super(material);
 		this.a = a;
 		this.n = n;
 	}
 
 	@Override
-	public Hit hit(Ray r) {
+	public Hit hit(final Ray r) {
 		double t = a.sub(r.o).dot(n) / r.d.dot(n);
 		if (t > Eps.ylon) {
 			return new Hit(t, r, this, n);

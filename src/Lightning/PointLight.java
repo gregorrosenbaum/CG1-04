@@ -17,7 +17,7 @@ import color.Color;
  */
 public class PointLight extends Light {
 
-	public Point3 position;
+	public final Point3 position;
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class PointLight extends Light {
 	 * @param position
 	 *            = Position of the light.
 	 */
-	public PointLight(Color color, boolean castsShadows, Point3 position) {
+	public PointLight(final Color color, final boolean castsShadows, final Point3 position) {
 		super(color, castsShadows);
 		this.position = position;
 	}
@@ -39,7 +39,7 @@ public class PointLight extends Light {
 		// this doesnt necessarily mean it illuminates the point, just that nothing is in the way.
 		// And that is sufficient for shadows.
 		// the actual illumination is calculated by the material with the distance of directionFrom
-		if (castsShadows == true) {
+		if (castsShadows) {
 			// create a new ray that points from the position of the light to the hitted point
 			Ray ray = new Ray(position, point.sub(position).normalized());
 			// try to hit all objects with this ray
@@ -65,7 +65,7 @@ public class PointLight extends Light {
 	}
 
 	@Override
-	public Vector3 directionFrom(Point3 point) {
+	public Vector3 directionFrom(final Point3 point) {
 		return position.sub(point).normalized();
 	}
 }

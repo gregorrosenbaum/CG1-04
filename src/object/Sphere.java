@@ -22,8 +22,8 @@ import color.Color;
  */
 public class Sphere extends Geometry {
 
-	public Point3 c;
-	public double r;
+	public final Point3 c;
+	public final double r;
 
 	/**
 	 * Constructs a {@link Geometry} Sphere with a radius, a {@link Point3} and a {@link Color}.
@@ -35,14 +35,14 @@ public class Sphere extends Geometry {
 	 * @param r
 	 *            = Radius of the Sphere.
 	 */
-	public Sphere(Material material, Point3 c, double r) {
+	public Sphere(final Material material, final Point3 c, final double r) {
 		super(material);
 		this.c = c;
 		this.r = r;
 	}
 
 	@Override
-	public Hit hit(Ray ray) {
+	public Hit hit(final Ray ray) {
 
 		double a = ray.d.dot(ray.d);
 		double b = ray.d.dot((ray.o.sub(c)).mul(2));
