@@ -24,7 +24,7 @@ public class ReflectiveMaterial extends Material {
 	public final Color reflection;
 
 	/**
-	 * This constructor gives a ReflectiveMaterial
+	 * Constructor for a ReflectiveMaterial.
 	 * 
 	 * @param diffuse = 
 	 * 					diffuse reflection of {@link Color} of {@link Material} 
@@ -42,11 +42,6 @@ public class ReflectiveMaterial extends Material {
 		this.reflection = reflection;
 	}
 
-	 /** 
-	 * This method converts the current color into returnColor
-	 * @returns returnColor
-	 */
-	
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world

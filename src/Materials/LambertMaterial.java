@@ -18,21 +18,16 @@ public class LambertMaterial extends Material {
 	public final Color color;
 
 	/**
-	 * This constructor gives a LambertMaterial
+	 * Constructor for a LambertMaterial.
 	 * 
 	 * @param color
 	 *            = {@link Color} of the {@link Material}.
 	 */
-	public LambertMaterial(Color color) {
+	public LambertMaterial(final Color color) {
 		this.color = color;
 	}
 
-	/**
-	 * This method converts the current color into returnColor
-	 * @returns returnColor
-	 */
-	
-	public Color colorFor(Hit hit, World world, Tracer tracer) {
+	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world
 		Color returnColor = new Color(world.ambient.r, world.ambient.g, world.ambient.b);

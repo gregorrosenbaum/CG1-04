@@ -17,7 +17,7 @@ import color.Color;
 public abstract class Material {
 
 	/**
-	 * This constructor gives a color for Materials
+	 * This method returns a color for {@link Material}.
 	 * 
 	 * @param hit
 	 *            = checks for a {@link Hit}
@@ -27,6 +27,6 @@ public abstract class Material {
 	 *            = {@link RayTracer}.
 	 * @return
 	 */
-	
+
 	public abstract Color colorFor(Hit hit, World world, Tracer tracer);
 }

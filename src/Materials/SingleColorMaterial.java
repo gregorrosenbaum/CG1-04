@@ -18,17 +18,13 @@ public class SingleColorMaterial extends Material {
 	public final Color color;
 
 	/**
+	 * Constructor for SingleColorMaterial.
 	 * @param color
 	 *            = {@link Color} of the {@link Material}.
 	 */
 	public SingleColorMaterial(Color color) {
 		this.color = color;
 	}
-
-	/**
-	 * This method converts the current color into backgroundColor
-	 * @returns backgroundColor
-	 */
 	
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		for (Light l : world.lights) {
