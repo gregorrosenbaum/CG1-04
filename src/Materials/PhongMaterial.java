@@ -44,8 +44,7 @@ public class PhongMaterial extends Material {
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world
-		Color returnColor = new Color(world.ambient.r, world.ambient.g,
-				world.ambient.b);
+		Color returnColor = diffuse.mul(world.ambient);
 
 		// we declare this for performance reasons, as it would be called
 		// several times in the loop

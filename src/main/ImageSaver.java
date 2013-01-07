@@ -122,7 +122,7 @@ public class ImageSaver {
 
 		// ///////////////////////////// AK Environment End //////////////////////////////
 
-		World testWorld = new World(new Color(0.1, 0.1, 0.4), objects, lights, new Color(0.1, 0.1, 0.1), 1);
+		World testWorld = new World(new Color(0.1, 0.1, 0.3), objects, lights, new Color(0.1, 0.1, 0.1), 1);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
 

@@ -31,7 +31,7 @@ public class LambertMaterial extends Material {
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world
-		Color returnColor = new Color(world.ambient.r, world.ambient.g, world.ambient.b);
+		Color returnColor = color.mul(world.ambient);
 
 		for (Light l : world.lights) {
 			// here we check if the light illuminates the object and add the corresponding color
