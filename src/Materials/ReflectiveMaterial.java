@@ -27,10 +27,13 @@ public class ReflectiveMaterial extends Material {
 	 * 
 	 * 
 	 * @param diffuse = 
-	 * 					
-	 * @param specular
-	 * @param exponent
-	 * @param reflection
+	 * 					diffuse reflection of {@link Color} of {@link Material} 
+	 * @param specular = 
+	 * 					specular mirror-like reflection of {@link Color} of {@link Material}
+	 * @param exponent = 
+	 * 					 is the exponent for the function e^x
+	 * @param reflection =
+	 *                     reflection of {@link Color}
 	 */
 	public ReflectiveMaterial(Color diffuse, Color specular, int exponent, Color reflection) {
 		this.diffuse = diffuse;

@@ -7,7 +7,7 @@ import Lightning.Light;
 import color.Color;
 
 /**
- * {@link Material}, that returns jaust one {@link Color}.
+ * {@link Material}, that returns just one {@link Color}.
  * 
  * @author Johann Hofmann
  * @author Gregor Rosenbaum

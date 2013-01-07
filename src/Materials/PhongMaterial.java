@@ -23,9 +23,13 @@ public class PhongMaterial extends Material {
 	/**
 	 * 
 	 * 
-	 * @param diffuse
-	 * @param specular
-	 * @param exponent
+	 * @param diffuse = 
+	 * 					diffuse reflection of {@link Color} of {@link Material} 
+	 * @param specular = 
+	 * 					specular mirror-like reflection of {@link Color} of {@link Material}
+	 * @param exponent = 
+	 * 					 is the exponent for the function e^x
+	 * 					
 	 */
 	public PhongMaterial(Color diffuse, Color specular, int exponent) {
 		this.diffuse = diffuse;
