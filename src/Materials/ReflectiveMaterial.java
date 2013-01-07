@@ -9,7 +9,8 @@ import Lightning.Light;
 import color.Color;
 
 /**
- * 
+ * ReflectiveMaterials shows a {@link Material} for a perfect diffuse reflected body with a shining point 
+ * and reflection
  * 
  * @author Johann Hofmann
  * @author Gregor Rosenbaum
@@ -25,7 +26,8 @@ public class ReflectiveMaterial extends Material {
 	/**
 	 * 
 	 * 
-	 * @param diffuse
+	 * @param diffuse = 
+	 * 					
 	 * @param specular
 	 * @param exponent
 	 * @param reflection

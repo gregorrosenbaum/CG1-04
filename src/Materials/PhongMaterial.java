@@ -8,7 +8,7 @@ import Lightning.Light;
 import color.Color;
 
 /**
- * 
+ * PhongMaterial shows a {@link Material} for a perfect diffuse reflected body with a shining point
  * 
  * @author Johann Hofmann
  * @author Gregor Rosenbaum

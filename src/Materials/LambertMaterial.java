@@ -7,8 +7,7 @@ import Lightning.Light;
 import color.Color;
 
 /**
- * 
- * 
+ * LambertMaterial is a {@link Material} for a perfect diffuse reflected body
  * 
  * @author Johann Hofmann
  * @author Gregor Rosenbaum

@@ -9,8 +9,7 @@ import vectorlib.Vector3;
 import color.Color;
 
 /**
- * 
- * 
+ * TransparentMaterials shows a transparent {@link Material}
  * @author Johann Hofmann
  * @author Gregor Rosenbaum
  * @author Anton Krebs
@@ -26,7 +25,9 @@ public class TransparentMaterial extends Material {
 	/**
 	 * 
 	 * 
-	 * @param indexOfRefraction
+	 * @param indexOfRefraction = 
+	 * 								 a dimensionless number that describes how light, or any other radiation, propagates through that medium
+	 * 
 	 */
 	public TransparentMaterial(double indexOfRefraction) {
 		this.indexOfRefraction = indexOfRefraction;
