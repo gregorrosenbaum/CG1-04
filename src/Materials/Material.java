@@ -17,7 +17,7 @@ import color.Color;
 public abstract class Material {
 
 	/**
-	 * 
+	 * This constructor gives a color for Materials
 	 * 
 	 * @param hit
 	 *            = checks for a {@link Hit}

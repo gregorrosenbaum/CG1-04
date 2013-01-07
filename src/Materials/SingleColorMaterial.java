@@ -25,7 +25,11 @@ public class SingleColorMaterial extends Material {
 		this.color = color;
 	}
 
-	@Override
+	/**
+	 * This method converts the current color into backgroundColor
+	 * @returns backgroundColor
+	 */
+	
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		for (Light l : world.lights) {
 			if (l.illuminates(hit.ray.at(hit.t), world)) {

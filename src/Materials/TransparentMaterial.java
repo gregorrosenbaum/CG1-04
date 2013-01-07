@@ -23,7 +23,7 @@ public class TransparentMaterial extends Material {
 	public static final int maxDepth = 4;
 
 	/**
-	 * 
+	 * This constructor gives a TransparentMaterial
 	 * 
 	 * @param indexOfRefraction = 
 	 * 								 a dimensionless number that describes how light, or any other radiation, propagates through that medium
@@ -34,7 +34,10 @@ public class TransparentMaterial extends Material {
 		this.recursionCounter = maxDepth;
 	}
 
-	@Override
+	/**
+	 * This method converts the current color into color
+	 * @returns color
+	 */
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		// if the maximum depth is reached, we just return the backgroundcolor
 		// this doesnt make much of a difference, it will be for internal reflection by now anyway

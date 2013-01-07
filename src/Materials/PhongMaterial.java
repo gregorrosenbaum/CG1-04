@@ -21,7 +21,7 @@ public class PhongMaterial extends Material {
 	public int exponent;
 
 	/**
-	 * 
+	 * This constructor gives a PhongMaterial
 	 * 
 	 * @param diffuse = 
 	 * 					diffuse reflection of {@link Color} of {@link Material} 
@@ -37,7 +37,10 @@ public class PhongMaterial extends Material {
 		this.exponent = exponent;
 	}
 
-	@Override
+	/**
+	 * This method converts the current color into returnColor
+	 * @returns returnColor
+	 */
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world
