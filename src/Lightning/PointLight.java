@@ -34,7 +34,7 @@ public class PointLight extends Light {
 	}
 
 	@Override
-	public boolean illuminates(Point3 point, World world) {
+	public boolean illuminates(final Point3 point,final World world) {
 		// Check if the light is supposed to cast any shadows, if not we skip and return true,
 		// this doesnt necessarily mean it illuminates the point, just that nothing is in the way.
 		// And that is sufficient for shadows.
