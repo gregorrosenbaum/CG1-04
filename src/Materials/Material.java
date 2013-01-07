@@ -28,5 +28,6 @@ public abstract class Material {
 	 * @returns color
 	 */
 
-	public abstract Color colorFor(final Hit hit, final World world, final Tracer tracer);
+	public abstract Color colorFor(final Hit hit, final World world,
+			final Tracer tracer);
 }

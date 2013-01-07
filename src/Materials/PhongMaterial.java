@@ -33,12 +33,14 @@ public class PhongMaterial extends Material {
 	 *            = is the exponent for the function e^x
 	 * 
 	 */
-	public PhongMaterial(final Color diffuse, final Color specular, final int exponent) {
+	public PhongMaterial(final Color diffuse, final Color specular,
+			final int exponent) {
 		this.diffuse = diffuse;
 		this.specular = specular;
 		this.exponent = exponent;
 	}
 
+	@Override
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world

@@ -27,6 +27,7 @@ public class LambertMaterial extends Material {
 		this.color = color;
 	}
 
+	@Override
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world
