@@ -1,0 +1,138 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Vierte Übung
+\end_layout
+
+\begin_layout Author
+Anton Krebs, Gregor Rosenbaum, Johann Hofmann
+\end_layout
+
+\begin_layout Section
+Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+Die unterschiedlichen Beleuchtungen und Materialien sollen implementiert
+ werden.
+ Das Hit-Objekt muss dabei um die Normale des Schnittpunkts ergänzt werden.
+ Die 
+\family typewriter
+World
+\family default
+-Klasse benötigt nun eine Liste aller Lichtquellen, die Farbe fürs ambiente
+ Licht, sowie einen Brechungsindex.
+\end_layout
+
+\begin_layout Section
+Lösung
+\end_layout
+
+\begin_layout Subsection
+Ansatz
+\end_layout
+
+\begin_layout Standard
+Als erstes SingleColorMaterial und PointLight.
+ Danach LambertMaterial, PhongMaterial und ReflectiveMaterial.
+ Ambientes Licht in die World-Klasse.
+ Jetzt Schatte-Implementierung.
+ Zum Schluss DirectionalLight und TransparentMaterial.
+\end_layout
+
+\begin_layout Subsection
+Durchführung
+\end_layout
+
+\begin_layout Standard
+Als erstes wurde der Tracer implementiert und danach das SingleColorMaterial.
+ Ist die Anzeige korrekt, kann man davon ausgehen, dass der Tracer korrekt
+ ist.
+ Danach wurded das PointLight erstellt, da es simpelsten ist.
+ Geprüft wurde das mit einer Sphere und einer Plane, da wir hier die Normale
+ am einfachsten berechnen konnten.
+\end_layout
+
+\begin_layout Standard
+Um zu prüfen, welcher Punkt durch das SpotLight angestrahlt wird, prüfen
+ wir ob der Punkt innerhalb des Öffnungswinkels liegt.
+ Das LabertMaterial, ReflectiveMaterial und PhongMaterial standen als nächstes
+ auf der Liste.
+ In der World-Klasse wurde dann das ambiente Licht implementiert, durch
+ einen konstanten Faktor, der für alle Objekte gleich ist.
+ Als nächstes wird castsShadows in jede Light-Klasse implementiert.
+ Als letztes DirectionalLight und das TransparentMaterial mit Refraction.
+\end_layout
+
+\begin_layout Section
+Aufwand
+\end_layout
+
+\begin_layout Standard
+Die Aufgabe war bisher am aufwändigsten.
+ Besonders die Implementierung der Refraktion und Reflektion war sehr zeitaufwän
+dig.
+\end_layout
+
+\end_body
+\end_document
