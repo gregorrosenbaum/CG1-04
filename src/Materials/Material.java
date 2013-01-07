@@ -25,7 +25,7 @@ public abstract class Material {
 	 *            = {@link World} that displays all the {@link Geometry}.
 	 * @param tracer
 	 *            = {@link RayTracer}.
-	 * @return
+	 * @returns color
 	 */
 
 	public abstract Color colorFor(final Hit hit, final World world, final Tracer tracer);

@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+import javax.media.jai.widget.ImageCanvas;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -97,7 +97,6 @@ public class ImageSaver {
 
 		// ///////////////////////////// AK Environment Start //////////////////////////////
 
-		// TODO: Triangle hinzufügen
 
 		Geometry[] objects = new Geometry[] {
 				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0), new Normal3(0,
