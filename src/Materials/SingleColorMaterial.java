@@ -15,7 +15,7 @@ import color.Color;
  */
 public class SingleColorMaterial extends Material {
 
-	public Color color;
+	public final Color color;
 
 	/**
 	 * @param color

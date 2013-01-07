@@ -15,7 +15,7 @@ import color.Color;
  */
 public class LambertMaterial extends Material {
 
-	public Color color;
+	public final Color color;
 
 	/**
 	 * This constructor gives a LambertMaterial
@@ -26,7 +26,6 @@ public class LambertMaterial extends Material {
 	public LambertMaterial(Color color) {
 		this.color = color;
 	}
-
 
 	/**
 	 * This method converts the current color into returnColor

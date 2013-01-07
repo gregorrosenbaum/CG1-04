@@ -18,10 +18,10 @@ import color.Color;
  */
 public class ReflectiveMaterial extends Material {
 
-	public Color diffuse;
-	public Color specular;
-	public int exponent;
-	public Color reflection;
+	public final Color diffuse;
+	public final Color specular;
+	public final int exponent;
+	public final Color reflection;
 
 	/**
 	 * This constructor gives a ReflectiveMaterial
@@ -46,6 +46,7 @@ public class ReflectiveMaterial extends Material {
 	 * This method converts the current color into returnColor
 	 * @returns returnColor
 	 */
+	
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world

@@ -16,9 +16,9 @@ import color.Color;
  */
 public class PhongMaterial extends Material {
 
-	public Color diffuse;
-	public Color specular;
-	public int exponent;
+	public final Color diffuse;
+	public final Color specular;
+	public final int exponent;
 
 	/**
 	 * This constructor gives a PhongMaterial
@@ -41,6 +41,7 @@ public class PhongMaterial extends Material {
 	 * This method converts the current color into returnColor
 	 * @returns returnColor
 	 */
+	
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
 		// we declare a temporary color to which we will add all light colors
 		// it initializes with the ambient color of the world

@@ -16,7 +16,7 @@ import color.Color;
  */
 public class TransparentMaterial extends Material {
 
-	public double indexOfRefraction;
+	public final double indexOfRefraction;
 	// the transparent material needs an own recursion counter because it creates tracer requests
 	// exponentially, which cant be handled by the tracer recursion guard
 	protected int recursionCounter;
