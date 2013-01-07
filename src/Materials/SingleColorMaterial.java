@@ -26,6 +26,7 @@ public class SingleColorMaterial extends Material {
 		this.color = color;
 	}
 	
+	@Override
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		for (Light l : world.lights) {
 			if (l.illuminates(hit.ray.at(hit.t), world)) {

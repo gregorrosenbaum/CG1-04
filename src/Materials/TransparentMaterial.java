@@ -37,6 +37,7 @@ public class TransparentMaterial extends Material {
 		this.recursionCounter = maxDepth;
 	}
 
+	@Override
 	public Color colorFor(final Hit hit, final World world, final Tracer tracer) {
 		// if the maximum depth is reached, we just return the backgroundcolor
 		// this doesnt make much of a difference, it will be for internal
