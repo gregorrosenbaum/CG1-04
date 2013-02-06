@@ -60,14 +60,12 @@ public class Triangle extends Geometry {
 		double beta = A1.determinant / A.determinant;
 		double gamma = A2.determinant / A.determinant;
 		double t = A3.determinant / A.determinant;
-//		Normal3 n1 = new Normal3 (0,1,0);
-//		Normal3 n2 = new Normal3 (0,1,0);
-//		Normal3 n3 = new Normal3 (0,1,0);
+// 		Choose one point and from this point creates 2 vectors
+//		dot product of this 2 vector and set the result as normal
 		Vector3 v1 = new Vector3 (b.x - a.x, b.y - a.y, b.z - a.z);
 		Vector3 v2 = new Vector3 (c.x - a.x, c.y - a.y, c.z - a.z);
 		Vector3 direction = (v2.x(v1));
 		Normal3 norm = direction.asNormal();
-//		Normal3 norm = new Normal3 (0 ,1 ,0);
 		if (t > Eps.ylon && Eps.ylon <= beta && Eps.ylon <= gamma && beta + gamma <= 1) {
 			return new Hit(t, r, this, norm);
 		}

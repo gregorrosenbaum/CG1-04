@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.media.jai.widget.ImageCanvas;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -97,7 +96,6 @@ public class ImageSaver {
 
 		// ///////////////////////////// AK Environment Start //////////////////////////////
 
-		// TODO: Triangle hinzufügen
 
 		Geometry[] objects = new Geometry[] {
 				new Plane(new ReflectiveMaterial(new Color(1, 1, 1), new Color(1, 1, 1), 10, new Color(1, 1, 1)), new Point3(0, 0, 0), new Normal3(0,
@@ -124,7 +122,7 @@ public class ImageSaver {
 
 		// ///////////////////////////// AK Environment End //////////////////////////////
 
-		World testWorld = new World(new Color(0.1, 0.1, 0.4), objects, lights, new Color(0.1, 0.1, 0.1), 1);
+		World testWorld = new World(new Color(0.1, 0.1, 0.3), objects, lights, new Color(0.1, 0.1, 0.1), 1);
 		final RayTracer canvas = new RayTracer(WIDTH, HEIGHT, testWorld, testCam);
 		myFrame.add(canvas);
 
